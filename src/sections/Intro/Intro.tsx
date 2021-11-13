@@ -1,0 +1,116 @@
+import { useColorModeValue } from "@chakra-ui/color-mode";
+import { Box, Flex, Heading, Stack } from "@chakra-ui/layout";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import router from "next/router";
+import { ButtonLg } from "../../components";
+import useAuth from "../../context/Auth/Auth";
+
+export interface IImageAsset {
+  name: string;
+  path: string;
+}
+
+const imgAssets: Array<IImageAsset> = [];
+
+export default function LandingIntro(): JSX.Element {
+  const btnBg = useColorModeValue("brandLight.900", "brandLight.800");
+  const btnColor = "white";
+  const btnBorderColor = useColorModeValue("brandLight.400", "brandLight.400");
+  const btnHoverBg = useColorModeValue("brandLight.700", "brandLight.700");
+  const nftSocialNetwork = "NFT SOCIAL NETWORK";
+  const { isAuthenticated, isLoading } = useAuth();
+  return (
+    <Flex
+      align="center"
+      w="100%"
+      h="100%"
+      minW="100vw"
+      minH="92.1vh"
+      flexDir="column"
+      overflow="hidden"
+      pos="relative"
+    >
+      <Stack
+        spacing={14}
+        align="center"
+        h="full"
+        mt="8.1rem"
+        pos="relative"
+        overflow="hidden"
+      >
+        <Heading
+          fontSize="7rem"
+          textAlign="center"
+          color={useColorModeValue("gray.800", "gray.100")}
+          className="nft-social-network"
+          textTransform="uppercase"
+          lineHeight="1.4"
+        >
+          {nftSocialNetwork}
+        </Heading>
+
+        <Heading
+          fontSize="2rem"
+          fontWeight="normal"
+          pb="4rem"
+          className="join-text"
+          color={useColorModeValue("gray.500", "gray.500")}
+        >
+          Join the revolution
+        </Heading>
+
+        <ButtonLg
+          label="Get Started"
+          callback={() => {
+            router.push(isAuthenticated ? "/profile" : "/auth/login");
+          }}
+          border="6px solid"
+          isLoading={isLoading}
+          btnTheme={{
+            bg: btnBg,
+            color: btnColor,
+            borderColor: btnBorderColor,
+            _hover: {
+              bg: btnHoverBg,
+            },
+          }}
+        />
+      </Stack>
+      {/* <Heading
+        fontSize="17rem"
+        pos="absolute"
+        bottom="-9%"
+        left="0"
+        color={useColorModeValue("gray.100", "gray.900")}
+        w="full"
+        textAlign="center"
+        fontWeight="900"
+        zIndex="-1"
+        className="bg-text"
+        title="INSTA NFT"
+      >
+        INSTA NFT
+      </Heading> */}
+      <Box
+        pos="absolute"
+        bottom="0"
+        left="0"
+        w="100%"
+        h="62%"
+        zIndex="-1"
+        overflow="hidden"
+      >
+        {/* <Image
+          src="/images/landing1.png"
+          alt="landing-cover"
+          layout="fill"
+          loading="lazy"
+          quality={90}
+          objectFit="cover"
+          objectPosition="center"
+        /> */}
+      </Box>
+    </Flex>
+  );
+}

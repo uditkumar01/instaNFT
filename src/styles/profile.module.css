@@ -1,0 +1,41 @@
+.profileMenu {
+  width: calc(100% - 140px);
+}
+
+.profileSocialMedia {
+  max-height: 86%;
+}
+
+.profileTab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nftGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+  margin-top: 20px;
+}
+
+@media only screen and (max-width: 767px) {
+  .profileMenu {
+    width: 100%;
+  }
+  .profileSocialMedia {
+    height: fit-content !important;
+  }
+  .profileTab {
+    width: 100%;
+  }
+  .nftGrid {
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .nftGrid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}

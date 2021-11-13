@@ -1,0 +1,44 @@
+.content {
+  text-align: center;
+}
+
+.text {
+  fill: none;
+  stroke: white;
+  stroke-dasharray: 8% 29%;
+  stroke-width: 5px;
+  stroke-dashoffset: 1%;
+  font-size: 15rem;
+  animation: stroke-offset 5.5s infinite linear;
+}
+
+.text:nth-child(1) {
+  stroke: #fc8f00;
+  animation-delay: -1;
+}
+
+.text:nth-child(2) {
+  stroke: #00c3ff;
+  animation-delay: -2s;
+}
+
+.text:nth-child(3) {
+  stroke: #16ecc9;
+  animation-delay: -3s;
+}
+
+.text:nth-child(4) {
+  stroke: #2f8f7f;
+  animation-delay: -4s;
+}
+
+.text:nth-child(5) {
+  stroke: #0ad3ee;
+  animation-delay: -5s;
+}
+
+@keyframes stroke-offset {
+  100% {
+    stroke-dashoffset: -35%;
+  }
+}

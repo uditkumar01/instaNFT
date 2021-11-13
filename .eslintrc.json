@@ -1,0 +1,84 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "plugin:@next/next/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module",
+    "project": ["./tsconfig.json"]
+  },
+  "plugins": ["react", "@typescript-eslint", "react-hooks"],
+  "rules": {
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "react/require-default-props": "off",
+    "import/no-cycle": "off",
+    "import/no-extraneous-dependencies": "off",
+    "@typescript-eslint/ban-types": [
+      "warn",
+      {
+        "types": {
+          "String": false,
+          "Boolean": false,
+          "Number": false,
+          "Symbol": false,
+          "{}": false,
+          "Object": false,
+          "object": false,
+          "Function": false
+        },
+        "extendDefaults": true
+      }
+    ],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": ["warn", { "extensions": [".tsx", ".ts"] }],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "react/jsx-props-no-spreading": "off",
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["error"],
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "max-len": ["warn", { "code": 80 }],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/prop-types": "warn",
+    "import/prefer-default-export": "off",
+    "jsx-a11y/anchor-is-valid": "error",
+    "jsx-a11y/accessible-emoji": "error",
+    "jsx-a11y/html-has-lang": "error",
+    "jsx-a11y/anchor-has-content": "error",
+    "jsx-a11y/alt-text": "error",
+    "prettier/prettier": [
+      "error",
+      {},
+      {
+        "usePrettierrc": true
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  }
+}
