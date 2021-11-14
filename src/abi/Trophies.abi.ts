@@ -1,4 +1,4 @@
-module.exports = [
+export const trophiesAbi = [
   {
     anonymous: false,
     inputs: [
