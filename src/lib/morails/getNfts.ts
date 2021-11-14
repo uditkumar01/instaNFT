@@ -3,7 +3,6 @@ import axios from "axios";
 import { moralisPortInstance } from ".";
 import { errorHandler } from "../../utils/errorHandler";
 import { INFT } from "../../utils/Firestore/nft/addNfts";
-import { generatePinataLink } from "../../utils/generatePinataLink";
 import { getSingleLevelObject } from "../../utils/getSingleLevelObject";
 import { isImage } from "../../utils/isImage";
 

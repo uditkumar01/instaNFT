@@ -143,14 +143,14 @@ export function Web3UtilityProvider({
 
       const accounts = await web3.eth.getAccounts();
 
-      // setWalletAddress({
-      //   type: chain,
-      //   address: accounts[0],
-      // });
       setWalletAddress({
         type: chain,
-        address: testAddress,
+        address: accounts[0],
       });
+      // setWalletAddress({
+      //   type: chain,
+      //   address: testAddress,
+      // });
     },
     [web3Modal]
   );

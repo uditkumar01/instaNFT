@@ -11,9 +11,8 @@ interface NftFooterProps {
   }[];
 }
 
-const color = "twitter";
-
 export function NftFooter({ links }: NftFooterProps): JSX.Element {
+  const color = "twitter";
   const linkTextColor = useColorModeValue(`${color}.500`, `${color}.300`);
   return (
     <Flex flex="1" pt="1rem" flexWrap="wrap">

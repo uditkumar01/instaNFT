@@ -27,23 +27,38 @@ import useAuth, { IUser, IUserMinimal } from "../../context/Auth/Auth";
 
 interface UpperProfileProps {
   user: IUser | null | undefined;
+  color: string;
   isLoading?: boolean;
   isCurrentUserProfile?: boolean;
+  followCallback: () => Promise<void>;
 }
 
 export function UpperProfile({
   user,
   isCurrentUserProfile,
   isLoading,
+  color,
+  followCallback,
 }: UpperProfileProps): JSX.Element {
+  let followBtnProps: any = {
+    colorScheme: color,
+  };
   const errorColor = useColorModeValue("red.500", "red.300");
   const followBtnBg = useColorModeValue("white", "gray.800");
   const followBtnHoverBg = useColorModeValue("gray.200", "gray.700");
-  const linkColor = useColorModeValue(`twitter.500`, `twitter.300`);
+  const linkColor = useColorModeValue(`${color}.500`, `${color}.300`);
   const toast = useToast();
   const followInfoTextColor = useColorModeValue("gray.600", "gray.500");
   const bioTextColor = useColorModeValue("gray.900", "gray.100");
-
+  if (color === "none") {
+    followBtnProps = {
+      color: "gray.500",
+      bg: followBtnBg,
+      _hover: {
+        bg: followBtnHoverBg,
+      },
+    };
+  }
   const [coverImgLoaded, setCoverImgLoaded] = useState(false);
   const { user: currentUser } = useAuth();
 
@@ -181,6 +196,7 @@ export function UpperProfile({
             size="xl"
           />
         </Box>
+
         <AuthWrapper>
           {!isCurrentUserProfile ? (
             <Button
@@ -189,7 +205,7 @@ export function UpperProfile({
               bottom="12px"
               rounded="full"
               border="3px solid"
-              colorScheme="twitter"
+              onClick={followCallback}
               leftIcon={
                 <Icon
                   as={
@@ -200,6 +216,7 @@ export function UpperProfile({
                 />
               }
               isLoading={isLoading}
+              {...followBtnProps}
               aria-label={commonFollowers?.hasFollowed ? "Unfollow" : "Follow"}
             >
               {commonFollowers?.hasFollowed ? "following" : "follow"}
@@ -214,8 +231,8 @@ export function UpperProfile({
               onClick={() => router.push("/settings/account")}
               leftIcon={<AiFillEdit />}
               isLoading={isLoading}
+              {...followBtnProps}
               aria-label="Edit profile"
-              colorScheme="twitter"
             >
               Edit
             </Button>
@@ -516,6 +533,59 @@ export function UpperProfile({
           />
         </Stack>
       </Flex>
+      {!isCurrentUserProfile && (
+        <Flex alignItems="center" w="full" px="2rem" py="0.6rem">
+          <AvatarGroup size="xs" fontSize="xx-small" mr="5px">
+            {commonFollowers?.users?.map((follower) => {
+              return (
+                <Avatar
+                  key={`follower-${follower?.uid}`}
+                  name={follower?.username || follower?.uid}
+                  src={follower?.photoURL}
+                />
+              );
+            })}
+          </AvatarGroup>
+          {(commonFollowers?.users?.length || 0) > 0 ? (
+            <Flex fontSize="0.8rem" color={followInfoTextColor}>
+              Followed by&nbsp;
+              {commonFollowers?.users?.map((follower, index) => {
+                const indexToSubtract = commonFollowers?.total > 3 ? 1 : 2;
+                return (
+                  <Text key={`follower-${follower?.uid}`}>
+                    <Link color={linkColor} href="/profile">
+                      {follower?.username === currentUser?.username
+                        ? "You"
+                        : follower?.username}
+                    </Link>
+                    {index < commonFollowers?.users?.length - indexToSubtract &&
+                      ","}
+                    {index ===
+                      commonFollowers?.users?.length - indexToSubtract &&
+                      " and"}
+                    &nbsp;
+                  </Text>
+                );
+              })}
+              {commonFollowers?.total && commonFollowers?.total > 3 && (
+                <Text>
+                  {(commonFollowers?.total || 0) - 3}
+                  {(commonFollowers?.total || 0) - 3 > 1 ? " others" : " other"}
+                </Text>
+              )}
+            </Flex>
+          ) : (
+            <Text
+              fontSize="0.8rem"
+              color={followInfoTextColor}
+              pos="relative"
+              left="-4px"
+            >
+              Not followed by you and anyone you&apos;re following.{" "}
+            </Text>
+          )}
+        </Flex>
+      )}
     </Flex>
   );
 }

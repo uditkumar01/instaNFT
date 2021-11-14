@@ -82,7 +82,6 @@ const initialState = { isAuthenticated: false, isLoading: true, user: null };
 
 export function AuthProvider({ children }: IAuthContextProps): JSX.Element {
   const [authState, authDispatch] = useReducer(authReducer, initialState);
-
   useEffect(() => {
     // eslint-disable-next-line func-names
     const observer = auth().onAuthStateChanged(async function (user) {

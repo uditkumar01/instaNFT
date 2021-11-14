@@ -3,6 +3,7 @@ import { FaCog } from "react-icons/fa";
 import { BsFillFileTextFill } from "react-icons/bs";
 import { RiEditCircleFill } from "react-icons/ri";
 import React, { useEffect, useMemo, useState } from "react";
+import { motion } from "framer-motion";
 import { MdDashboardCustomize, MdPrivacyTip } from "react-icons/md";
 import { IoLanguageSharp } from "react-icons/io5";
 import { IoMdWallet } from "react-icons/io";
@@ -10,6 +11,7 @@ import { useColorModeValue } from "@chakra-ui/color-mode";
 import { Button, IconButton } from "@chakra-ui/button";
 import Icon from "@chakra-ui/icon";
 import router from "next/router";
+import { AiFillFileAdd } from "react-icons/ai";
 
 const NavItem = ({
   icon,
@@ -48,7 +50,7 @@ const NavItem = ({
         px="4"
         pl="4"
         py="3"
-        cursor="pointer"
+        cursor={isDisabled ? "not-allowed" : "pointer"}
         color={useColorModeValue("inherit", "gray.400")}
         bg={bg}
         borderLeft="2px solid transparent"
@@ -114,11 +116,14 @@ const SidebarContent = ({
           color="gray.600"
           aria-label="Main Navigation"
         >
-          <NavItem icon={RiEditCircleFill} href="/settings/account" isDisabled>
+          <NavItem icon={RiEditCircleFill} href="/settings/account">
             Account
           </NavItem>
           <NavItem icon={IoMdWallet} href="/settings/wallet">
             Wallet
+          </NavItem>
+          <NavItem icon={AiFillFileAdd} href="/mint">
+            Mint
           </NavItem>
           <NavItem
             icon={MdDashboardCustomize}
@@ -140,6 +145,11 @@ const SidebarContent = ({
       </Box>
     </>
   );
+};
+
+const variants = {
+  open: { opacity: 1, x: 0 },
+  closed: { opacity: 1, x: "-100%" },
 };
 
 export function Sidebar(): JSX.Element {
@@ -201,7 +211,18 @@ export function Sidebar(): JSX.Element {
         w="60"
         minW="60"
       >
-        <SidebarContent sidebarToggle={sidebarToggle} />
+        <motion.div
+          animate={sidebarIsOpen ? "open" : "closed"}
+          variants={variants}
+          // bouncy transition
+          transition={{
+            type: "spring",
+            stiffness: 300,
+            damping: 200,
+          }}
+        >
+          <SidebarContent sidebarToggle={sidebarToggle} />
+        </motion.div>
       </Flex>
     </>
   );

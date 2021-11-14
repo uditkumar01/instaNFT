@@ -35,8 +35,8 @@ export function InfoZone({
         top="0"
         left="0"
         rounded="md"
-        bg="transparent"
-        bgImage={`url(${coverImageURL || user?.coverImageURL})`}
+        bg={useColorModeValue("gray.100", "gray.900")}
+        bgImage={`url(${coverImageURL})`}
         bgSize="cover"
         bgRepeat="no-repeat"
         bgPosition="center"

@@ -1,0 +1,30 @@
+.tncText {
+  padding: 1rem;
+}
+
+.tncText p {
+  font-size: 1rem;
+  color: #758097;
+  line-height: 1.6;
+  padding: 1rem 0;
+}
+.tncText h2 {
+  font-size: 1.5rem;
+  color: #e1e5ee;
+  line-height: 1.6;
+  padding: 0.5rem 0;
+}
+
+.tncText h3 {
+  font-size: 1.15rem;
+  padding: 0.5rem 0;
+  padding-bottom: 0.2rem;
+  color: #d9dde4;
+  line-height: 1.6;
+  padding: 1rem 0;
+}
+
+.tncText a {
+  color: #80a7f0;
+  text-decoration: underline;
+}

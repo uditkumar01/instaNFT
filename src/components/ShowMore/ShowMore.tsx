@@ -1,6 +1,8 @@
 import { useColorModeValue } from "@chakra-ui/color-mode";
 import { chakra } from "@chakra-ui/system";
+import { motion } from "framer-motion";
 import { useState } from "react";
+import { fadeInVariants } from "../../animations/fadeIn";
 
 export function ShowMore({
   text,
@@ -13,7 +15,14 @@ export function ShowMore({
   const isTextLong = text.length > 155;
   const moreBtnColor = useColorModeValue("gray.900", "gray.50");
   return (
-    <>
+    <motion.span
+      variants={fadeInVariants}
+      key={`text-show-more-${showFullText ? "less" : "full"}`}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      className="show-more"
+    >
       {isTextLong && !showFullText ? (
         <>
           {showFullText ? text : `${text.slice(0, maxLength)}...`}
@@ -35,6 +44,6 @@ export function ShowMore({
       ) : (
         text
       )}
-    </>
+    </motion.span>
   );
 }

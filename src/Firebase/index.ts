@@ -4,6 +4,7 @@ import "firebase/firestore";
 import "firebase/auth";
 import "firebase/storage";
 import "firebase/analytics";
+import { pingMe } from "../utils/pingme";
 
 // Your web app's Firebase configuration
 
@@ -21,7 +22,15 @@ const firebaseConfig = {
 
 if (typeof window !== "undefined" && !firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
+  // if (
+  //   process.env.NODE_ENV?.toLowerCase() === "development" &&
+  //   firebaseConfig?.measurementId
+  // ) {
+  //   pingMe("Firebase analytics initialized");
+  //   firebase.analytics();
+  // }
 }
+pingMe(`Firebase initialized in ${process.env.NODE_ENV} mode`);
 
 const { auth, firestore, storage } = firebase;
 

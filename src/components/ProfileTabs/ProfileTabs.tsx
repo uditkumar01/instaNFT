@@ -9,27 +9,40 @@ import { Flex, SimpleGrid, Text } from "@chakra-ui/layout";
 import { MdOutlineTableChart } from "react-icons/md";
 import { BsCollection } from "react-icons/bs";
 import router from "next/router";
+import { motion } from "framer-motion";
 import { getNftOptions } from "../../constants/nftOptions";
-import { NftCard, NoItemsFound } from "..";
+import { fadeInVariants } from "../../animations/fadeIn";
+import { CollectionTabHeader, ImageGrid, NftCard, NoItemsFound } from "..";
 import styles from "../../styles/profile.module.css";
 import { INFT } from "../../utils/Firestore/nft/addNfts";
 import { nftCardLeftBtns } from "../../constants/nftCardLikeAndComment";
+import { getCollectionCardOptions } from "../../constants/collectionCardOptions";
+import { capitalizeString } from "../../utils/capitalizeString";
 import useAuth, { IUser } from "../../context/Auth/Auth";
+import { ICollection } from "../../pages/u/reducer/collectionReducer";
 
 export function ProfileTabs({
   user,
   nfts,
+  color,
   setTabIndex,
   isLoading,
+  nftLikeHandler,
   nftDispatch,
   isLikedCheck,
+  allCollections,
+  collectionDispatch,
 }: {
   user?: IUser | null;
   nfts: INFT[];
+  color: string;
   isLoading?: boolean;
   setTabIndex: Dispatch<SetStateAction<number>>;
+  nftLikeHandler: any;
   nftDispatch: Dispatch<any>;
   isLikedCheck: any;
+  allCollections: ICollection[];
+  collectionDispatch: any;
 }): JSX.Element {
   const toast = useToast();
   const iconBtnBg = useColorModeValue("gray", "silver");
@@ -41,6 +54,7 @@ export function ProfileTabs({
       <Tabs
         w="full"
         maxW="1500px"
+        colorScheme={color}
         onChange={(index) => {
           setTabIndex(index);
         }}
@@ -98,7 +112,8 @@ export function ProfileTabs({
                     nftItem?.uid || "",
                     toast,
                     isAuthenticated,
-                    nftItem?.assetUrl
+                    nftItem?.assetUrl,
+                    collectionDispatch
                   );
                   const nftCardLeftSideBtns = nftCardLeftBtns(
                     iconBtnBg,
@@ -127,15 +142,22 @@ export function ProfileTabs({
                     toast
                   );
                   return (
-                    <NftCard
-                      className={`nft-card-${i} ${styles.nftCardItem}`}
-                      containerClass={`nft-container-${i}`}
-                      menuOptions={menuOptions}
-                      leftSideBtns={nftCardLeftSideBtns}
-                      footerHref={`/nft/${nftItem?.tokenAddress}/${nftItem?.tokenId}`}
-                      {...nftItem}
-                      isFullWidth
-                    />
+                    <motion.div
+                      variants={fadeInVariants}
+                      initial="hidden"
+                      animate="visible"
+                      key={`nft-card-${nftItem?.uid}`}
+                    >
+                      <NftCard
+                        className={`nft-card-${i} ${styles.nftCardItem}`}
+                        containerClass={`nft-container-${i}`}
+                        menuOptions={menuOptions}
+                        leftSideBtns={nftCardLeftSideBtns}
+                        footerHref={`/nft/${nftItem?.tokenAddress}/${nftItem?.tokenId}`}
+                        {...nftItem}
+                        isFullWidth
+                      />
+                    </motion.div>
                   );
                 })}
               </SimpleGrid>
@@ -143,23 +165,67 @@ export function ProfileTabs({
               <NoItemsFound
                 isLoading={isLoading}
                 text="You have no NFTs yet"
-                btnText="Connect your wallet"
+                btnText="Connect you wallet"
                 href="/settings/wallet"
+                color={color}
+              />
+            )}
+          </TabPanel>
+          <TabPanel>
+            <CollectionTabHeader collectionDispatch={collectionDispatch} />
+            {allCollections?.length ? (
+              <SimpleGrid className={styles.nftGrid} spacing={4}>
+                {allCollections?.map((collectionItem, i) => {
+                  const menuOptionData = getCollectionCardOptions(
+                    router,
+                    collectionItem?.uid || "",
+                    toast,
+                    collectionDispatch
+                  );
+                  let menuOptions = menuOptionData.all;
+                  if (currentUser?.uid === collectionItem?.owner) {
+                    menuOptions = menuOptions.concat(menuOptionData.onlyOwner);
+                  }
+                  return (
+                    <motion.div
+                      variants={fadeInVariants}
+                      initial="hidden"
+                      animate="visible"
+                      key={`nft-card-${collectionItem?.uid}`}
+                    >
+                      <NftCard
+                        className={`nft-card-${i} ${styles.nftCardItem}`}
+                        containerClass={`nft-container-${i}`}
+                        rightSideEllipses={menuOptions}
+                        headerText={`${collectionItem?.tags?.length} Tags • ${collectionItem?.items?.length} Collectibles`}
+                        footerText="Created by"
+                        footerHref={`/collection/${collectionItem?.uid}`}
+                        imgChild={
+                          <ImageGrid images={collectionItem?.images || []} />
+                        }
+                        {...collectionItem}
+                        name={capitalizeString(collectionItem?.name)}
+                        isFullWidth
+                      />
+                    </motion.div>
+                  );
+                })}
+              </SimpleGrid>
+            ) : (
+              <NoItemsFound
+                isLoading={isLoading}
+                text="You have no collections yet"
+                btnInivisible
+                color={color}
               />
             )}
           </TabPanel>
           <TabPanel>
             <NoItemsFound
               isLoading={isLoading}
-              text="Coming soon"
+              text="You have no liked items yet"
               btnInivisible
-            />
-          </TabPanel>
-          <TabPanel>
-            <NoItemsFound
-              isLoading={isLoading}
-              text="Coming soon"
-              btnInivisible
+              color={color}
             />
           </TabPanel>
         </TabPanels>

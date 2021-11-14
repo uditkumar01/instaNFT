@@ -7,12 +7,26 @@ import { Tag, TagCloseButton, TagLabel } from "@chakra-ui/tag";
 import { Image } from "@chakra-ui/image";
 import router from "next/router";
 import { IUser } from "../../context/Auth/Auth";
+import { INFT } from "../../utils/Firestore/nft/addNfts";
 import { CARD_IMAGE_HEIGHT } from "../../data/imageDimensions";
 import { CardFooter, CustomIconButton, CustomMenu } from "..";
+import { INftOptions } from "../../constants/nftOptions";
 import { INftBtns } from "../../constants/nftCardLikeAndComment";
 import { capitalizeString } from "../../utils/capitalizeString";
 import { generatePinataLink } from "../../utils/generatePinataLink";
 import { getIpfsLink } from "../../utils/getIPFSLink";
+
+// interface NftCardProps extends INFT {
+//   className?: string;
+//   containerClass?: string;
+//   isFullWidth?: boolean;
+//   imgChild?: ReactNode;
+//   menuOptions?: INftOptions[];
+//   leftSideBtns?: INftBtns[];
+//   rightSideEllipses?: INftOptions[];
+//   footerText?: string;
+//   headerText?: string;
+// }
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function NftCard({
@@ -37,6 +51,7 @@ export function NftCard({
   owner = owner as IUser;
   const [isImgLoaded, setIsImgLoaded] = useState(false);
   const imgBg = useColorModeValue("gray.300", "gray.600");
+  const color = "twitter";
   const imageUrl = getIpfsLink(generatePinataLink(assetUrl));
   return (
     <Center

@@ -8,9 +8,8 @@ import { linkify } from "../../utils/linkify";
 
 export type TagWithLabelProps = { tag: [string, string] };
 
-const color = "twitter";
-
 export function TagWithLabel({ tag }: TagWithLabelProps): JSX.Element {
+  const color = "twitter";
   const { colorMode } = useColorMode();
   if (!tag || tag.length < 2) return <></>;
   const [label, value] = tag;

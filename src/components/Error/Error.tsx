@@ -7,9 +7,11 @@ import styles from "../../styles/error404.module.css";
 export function Error({
   path,
   message,
+  color,
 }: {
   path?: string;
   message?: string;
+  color?: string;
 }): JSX.Element {
   return (
     <Flex
@@ -46,10 +48,10 @@ export function Error({
         </Heading>
 
         <Button
-          colorScheme="twitter"
+          colorScheme={color || "blue"}
           my="3rem"
           onClick={() => {
-            router.push(path || "/");
+            router.push("/");
           }}
           aria-label="Go to home page"
         >

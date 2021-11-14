@@ -3,7 +3,7 @@ import { useColorModeValue } from "@chakra-ui/color-mode";
 import { Flex, Stack, Divider } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import {
   Comments,
   Layout,
@@ -17,6 +17,11 @@ import {
 import useAuth, { IUser } from "../../../context/Auth/Auth";
 import { WithAuth } from "../../../HOC/WithAuth";
 import { INFT } from "../../../utils/Firestore/nft/addNfts";
+import {
+  addComment,
+  IComment,
+} from "../../../utils/Firestore/nft/comment/addComment";
+import { getComments } from "../../../utils/Firestore/nft/comment/getComments";
 import { getNFTFromTokenAddress } from "../../../utils/Firestore/nft/getNFTFromTokenAddress";
 import { generatePinataLink } from "../../../utils/generatePinataLink";
 import { getIpfsLink } from "../../../utils/getIPFSLink";
@@ -24,15 +29,105 @@ import { isLiked } from "../../../utils/like/isLiked";
 import { likeHandler } from "../../../utils/like/likeHandler";
 import { pinNFTHandler } from "../../../utils/pinNFTHandler";
 
+interface IInitialCommentState {
+  comments: IComment[];
+  loading: boolean;
+}
+
+const INITIAL_COMMENTS_STATE: IInitialCommentState = {
+  comments: [],
+  loading: false,
+};
+
+function commentReducer(state: IInitialCommentState, action: any) {
+  switch (action.type) {
+    case "SET_COMMENTS":
+      return {
+        ...state,
+        comments: action.comments,
+        loading: false,
+      };
+    case "ADD_COMMENT":
+      return {
+        comments: [action.comment, ...state.comments],
+        loading: false,
+      };
+    case "SET_LOADING":
+      return {
+        comments: state.comments,
+        loading: true,
+      };
+    default:
+      return state;
+  }
+}
+
 function NFT(): JSX.Element {
   const { query, isReady } = useRouter();
   const { user, authDispatch } = useAuth();
   const toast = useToast();
+  const [commentState, commentDispatch] = useReducer(
+    commentReducer,
+    INITIAL_COMMENTS_STATE
+  );
   const [nftDetails, setNftDetails] = useState<INFT | null>(null);
   const [imageDetails, setImageDetails] = useState({
     height: 0,
     width: 0,
   });
+
+  const fetchComments = async (commentIds: string[]) => {
+    commentDispatch({ type: "SET_LOADING" });
+    const commentRes = await getComments(commentIds);
+    if (commentRes?.success) {
+      commentDispatch({ type: "SET_COMMENTS", comments: commentRes.comments });
+    } else {
+      toast({
+        title: "Error",
+        description: commentRes?.error,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        variant: "left-accent",
+      });
+    }
+  };
+
+  const commentCallback = async (comment: string) => {
+    if (!comment) return;
+    if (nftDetails?.uid && user?.uid) {
+      const commentRes = await addComment(nftDetails.uid, comment, user?.uid);
+      if (commentRes?.success) {
+        commentDispatch({
+          type: "ADD_COMMENT",
+          comment: { ...commentRes.comment, user },
+        });
+        toast({
+          title: "Commented Successfully",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+          variant: "left-accent",
+        });
+      } else {
+        toast({
+          title: "Error Commenting",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+          variant: "left-accent",
+        });
+      }
+    } else {
+      toast({
+        title: "Please Login to Comment",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        variant: "left-accent",
+      });
+    }
+  };
 
   const nftFooterLinks = [
     {
@@ -58,11 +153,15 @@ function NFT(): JSX.Element {
           query?.tokenAddress?.toString() || "",
           query?.tokenId?.toString() || ""
         );
+
         if (res?.success && res?.nft) {
           setNftDetails(res.nft);
+          // fetch comments
+          fetchComments(res?.nft?.comments || []);
         }
       })();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isReady, query.tokenAddress, query.tokenId]);
 
   const bg = useColorModeValue("gray.100", "gray.900");
@@ -204,7 +303,11 @@ function NFT(): JSX.Element {
             </Stack>
           </NftContainer>
         </Flex>
-        <Comments />
+        <Comments
+          commentCallback={commentCallback}
+          comments={commentState.comments}
+          isLoading={commentState.loading}
+        />
       </Flex>
     </Layout>
   );

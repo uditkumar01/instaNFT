@@ -5,6 +5,7 @@ export function NoItemsFound({
   text,
   btnText,
   href,
+  color,
   btnInivisible,
   isLoading,
 }: any): JSX.Element | null {
@@ -12,7 +13,7 @@ export function NoItemsFound({
     return null;
   }
   return (
-    <Center flexDir="column" mt="3rem">
+    <Center flexDir="column" mt="3rem" pb="2rem">
       <Heading
         fontSize={{
           base: "1.6rem",
@@ -24,7 +25,7 @@ export function NoItemsFound({
       </Heading>
       {!btnInivisible && (
         <Button
-          colorScheme="twitter"
+          colorScheme={color}
           mt="2rem"
           as={Link}
           href={href}

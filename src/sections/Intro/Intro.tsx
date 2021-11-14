@@ -3,6 +3,8 @@ import { Box, Flex, Heading, Stack } from "@chakra-ui/layout";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import router from "next/router";
+import { fadeInVariants } from "../../animations/fadeIn";
+import { zoomInVariants } from "../../animations/zoomIn";
 import { ButtonLg } from "../../components";
 import useAuth from "../../context/Auth/Auth";
 
@@ -39,45 +41,61 @@ export default function LandingIntro(): JSX.Element {
         pos="relative"
         overflow="hidden"
       >
-        <Heading
-          fontSize="7rem"
-          textAlign="center"
-          color={useColorModeValue("gray.800", "gray.100")}
-          className="nft-social-network"
-          textTransform="uppercase"
-          lineHeight="1.4"
+        <motion.div
+          variants={fadeInVariants}
+          initial="hidden"
+          animate="visible"
         >
-          {nftSocialNetwork}
-        </Heading>
-
-        <Heading
-          fontSize="2rem"
-          fontWeight="normal"
-          pb="4rem"
-          className="join-text"
-          color={useColorModeValue("gray.500", "gray.500")}
+          <Heading
+            fontSize="7rem"
+            textAlign="center"
+            color={useColorModeValue("gray.800", "gray.100")}
+            className="nft-social-network"
+            textTransform="uppercase"
+            lineHeight="1.4"
+          >
+            {nftSocialNetwork}
+          </Heading>
+        </motion.div>
+        <motion.div
+          variants={fadeInVariants}
+          initial="hidden"
+          animate="visible"
         >
-          Join the revolution
-        </Heading>
-
-        <ButtonLg
-          label="Get Started"
-          callback={() => {
-            router.push(isAuthenticated ? "/profile" : "/auth/login");
-          }}
-          border="6px solid"
-          isLoading={isLoading}
-          btnTheme={{
-            bg: btnBg,
-            color: btnColor,
-            borderColor: btnBorderColor,
-            _hover: {
-              bg: btnHoverBg,
-            },
-          }}
-        />
+          <Heading
+            fontSize="2rem"
+            fontWeight="normal"
+            pb="4rem"
+            className="join-text"
+            color={useColorModeValue("gray.500", "gray.500")}
+          >
+            Join the revolution
+          </Heading>
+        </motion.div>
+        <motion.div
+          variants={zoomInVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <ButtonLg
+            label="Get Started"
+            callback={() => {
+              router.push(isAuthenticated ? "/profile" : "/auth/login");
+            }}
+            border="6px solid"
+            isLoading={isLoading}
+            btnTheme={{
+              bg: btnBg,
+              color: btnColor,
+              borderColor: btnBorderColor,
+              _hover: {
+                bg: btnHoverBg,
+              },
+            }}
+          />
+        </motion.div>
       </Stack>
-      {/* <Heading
+      <Heading
         fontSize="17rem"
         pos="absolute"
         bottom="-9%"
@@ -91,7 +109,7 @@ export default function LandingIntro(): JSX.Element {
         title="INSTA NFT"
       >
         INSTA NFT
-      </Heading> */}
+      </Heading>
       <Box
         pos="absolute"
         bottom="0"
@@ -101,7 +119,7 @@ export default function LandingIntro(): JSX.Element {
         zIndex="-1"
         overflow="hidden"
       >
-        {/* <Image
+        <Image
           src="/images/landing1.png"
           alt="landing-cover"
           layout="fill"
@@ -109,8 +127,24 @@ export default function LandingIntro(): JSX.Element {
           quality={90}
           objectFit="cover"
           objectPosition="center"
-        /> */}
+        />
       </Box>
+      <Flex pos="absolute" bottom="0" left="0" w="full" zIndex="-1">
+        {imgAssets.map(({ name, path }) => {
+          return (
+            <Flex key={name} pos="absolute" className={`asset-${name}`}>
+              <Image
+                src={`/images/${path}`}
+                alt={name}
+                height={1000}
+                width={1000}
+                loading="lazy"
+                quality={90}
+              />
+            </Flex>
+          );
+        })}
+      </Flex>
     </Flex>
   );
 }

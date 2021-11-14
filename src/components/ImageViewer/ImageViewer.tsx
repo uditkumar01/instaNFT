@@ -17,6 +17,7 @@ export function ImageViewer({
   children: React.ReactNode;
 }): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const color = "twitter";
   return (
     <>
       <Box cursor="zoom-in" onClick={onOpen}>
@@ -40,7 +41,7 @@ export function ImageViewer({
               "rgba(0, 0, 0, 0.5)",
               "rgba(255, 255, 255, 0.5)"
             )}
-            colorScheme="twitter"
+            colorScheme={color}
             pos="absolute"
             bottom="30px"
             left="50%"

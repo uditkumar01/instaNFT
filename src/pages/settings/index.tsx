@@ -5,7 +5,7 @@ import { WithAuth } from "../../HOC/WithAuth";
 
 function Settings(): JSX.Element {
   useEffect(() => {
-    router.replace(`/settings/wallet`);
+    router.replace(`/settings/account`);
   }, []);
 
   return <Loader />;

@@ -66,7 +66,7 @@ export const nftCardLeftBtns = (
           ml="0.3rem"
           color={iconBtnBg}
         >
-          {likeCount}
+          0
         </chakra.span>
       </>
     ),

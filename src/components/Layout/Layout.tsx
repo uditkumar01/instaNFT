@@ -1,7 +1,7 @@
 import { Box, Flex } from "@chakra-ui/layout";
 import Head from "next/head";
 import { useEffect, useRef } from "react";
-import { Navbar } from "..";
+import { MenuBar, Navbar } from "..";
 
 const defaultKeywords =
   // eslint-disable-next-line max-len
@@ -11,11 +11,13 @@ export function Layout({
   children,
   title,
   keywords,
+  overrideColor,
   description,
   expandedNav,
 }: {
   children: React.ReactNode;
   title: string;
+  overrideColor?: string;
   keywords?: string;
   description?: string;
   expandedNav?: boolean;
@@ -48,6 +50,16 @@ export function Layout({
           content={`${defaultKeywords} ${keywords || ""}`}
         />
         <meta name="theme-color" content="#1a202c, #ffffff" />
+        <meta name="author" content="InstaNFT" />
+        <meta name="copyright" content="InstaNFT" />
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="revisit-after" content="1 days" />
+        <meta name="language" content="English" />
+        <meta name="webcrawlers" content="all" />
+        <meta name="spiders" content="all" />
+        <meta name="distribution" content="global" />
+        <meta name="category" content="social" />
 
         {/* logo link tags */}
         <link rel="shortcut icon" href="/favicon/instanftLogo.ico?v=0.3" />
@@ -155,7 +167,8 @@ export function Layout({
         ref={containerRef}
         className="flex-layout-container"
       >
-        <Navbar expandedNav={expandedNav} />
+        <Navbar overrideColor={overrideColor} expandedNav={expandedNav} />
+        {expandedNav && <MenuBar />}
         <Box flex="1" p={9} />
         {children}
       </Flex>

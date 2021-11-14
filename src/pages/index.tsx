@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import dynamic from "next/dynamic";
-import { Layout, Loader } from "../components";
+import { Footer, Layout, Loader } from "../components";
 
 const importOpts = {
   // ssr: false,
