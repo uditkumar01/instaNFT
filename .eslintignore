@@ -1,0 +1,14 @@
+*.css
+*.svg
+
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+.env
