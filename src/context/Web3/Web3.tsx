@@ -43,7 +43,7 @@ const Web3Context = createContext({} as Web3ContextValue);
 const INFURA_ID = process.env.REACT_APP_INFURA_ID;
 
 // const testAddress = "0xc352b534e8b987e036a93539fd6897f53488e56a";
-const testAddress = "0x16a9f795fa63b38f09a2373793199c16ef019c38";
+// const testAddress = "0x16a9f795fa63b38f09a2373793199c16ef019c38";
 
 const initWeb3 = (provider: any) => {
   const web3 = new Web3(provider);
