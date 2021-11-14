@@ -6,7 +6,7 @@ import { IoMdRemove } from "react-icons/io";
 import { QueryModal } from "..";
 import { searchCollection } from "../../utils/Firestore/collections/searchCollection";
 import { updateItemOfCollection } from "../../utils/Firestore/collections/updateItemOfCollection";
-import { ICollection } from "../../pages/u/reducer/collectionReducer";
+import { ICollection } from "../../reducer/collectionReducer";
 
 const initalState = {
   collections: [],

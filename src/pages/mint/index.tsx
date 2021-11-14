@@ -82,7 +82,7 @@ type IErrorState = typeof initialState;
 const websiteRegex =
   /^(https?:\/\/)?(www\.)?[a-zA-Z0-9_]+\.[a-zA-Z0-9_]+(\/)?$/;
 
-function Account() {
+function Mint() {
   const { user, authDispatch } = useAuth();
   const nameInputRef = useRef<HTMLInputElement | null>(null);
   const collectionNameInputRef = useRef<HTMLInputElement | null>(null);
@@ -515,4 +515,4 @@ function Account() {
   );
 }
 
-export default WithAuth(Account);
+export default WithAuth(Mint);

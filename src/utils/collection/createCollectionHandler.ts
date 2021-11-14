@@ -3,7 +3,7 @@ import { IUser } from "../../context/Auth/Auth";
 import {
   ICollection,
   ICollectionAction,
-} from "../../pages/u/reducer/collectionReducer";
+} from "../../reducer/collectionReducer";
 import { createCollection } from "../Firestore/collections/createCollection";
 
 export const createCollectionHandler = async (

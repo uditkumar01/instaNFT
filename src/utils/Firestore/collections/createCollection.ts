@@ -1,5 +1,5 @@
 import { firestore } from "../../../Firebase";
-import { ICollection } from "../../../pages/u/reducer/collectionReducer";
+import { ICollection } from "../../../reducer/collectionReducer";
 import { errorHandler } from "../../errorHandler";
 import { addTags } from "./addTags";
 

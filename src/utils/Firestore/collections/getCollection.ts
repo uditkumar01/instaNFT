@@ -3,7 +3,7 @@ import { firestore } from "../../../Firebase";
 import { errorHandler } from "../../errorHandler";
 import { getNFT } from "../nft/getNFT";
 import { getUser } from "../user/getUser";
-import { ICollection } from "../../../pages/u/reducer/collectionReducer";
+import { ICollection } from "../../../reducer/collectionReducer";
 
 export const getCollection = async (
   collectionId: string

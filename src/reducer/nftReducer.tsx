@@ -1,4 +1,4 @@
-import { INFT } from "../../../utils/Firestore/nft/addNfts";
+import { INFT } from "../utils/Firestore/nft/addNfts";
 
 export interface IInitialNftsState {
   nfts: INFT[];

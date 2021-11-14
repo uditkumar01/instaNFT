@@ -11,6 +11,7 @@ import {
   ModalOverlay,
 } from "@chakra-ui/modal";
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/tabs";
+import { Tooltip } from "@chakra-ui/tooltip";
 import React from "react";
 import { RiTrophyLine } from "react-icons/ri";
 import { NoItemsFound } from "..";
@@ -18,7 +19,7 @@ import { trophiesData } from "../../data/trophiesData";
 
 export function TrophyModal(): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [trophies, setTrophies] = React.useState<Array<any>>(["100"]);
+  const [trophies, setTrophies] = React.useState<Array<any>>([]);
   return (
     <>
       <IconButton
@@ -48,9 +49,9 @@ export function TrophyModal(): JSX.Element {
 
               <TabPanels>
                 <TabPanel>
-                  <SimpleGrid columns={[1, 2, 3]} spacing={4}>
-                    {trophies?.length > 0 ? (
-                      trophies.map((trophy: any) => {
+                  {trophies?.length > 0 ? (
+                    <SimpleGrid columns={[1, 2, 3]} spacing={4}>
+                      {trophies.map((trophy: any) => {
                         return (
                           <Flex
                             key={trophy.id}
@@ -66,11 +67,11 @@ export function TrophyModal(): JSX.Element {
                             {" "}
                           </Flex>
                         );
-                      })
-                    ) : (
-                      <NoItemsFound text="No Trophies found" btnInivisible />
-                    )}
-                  </SimpleGrid>
+                      })}
+                    </SimpleGrid>
+                  ) : (
+                    <NoItemsFound text="Coming Soon" btnInivisible />
+                  )}
                 </TabPanel>
                 <TabPanel>
                   {Object.values(trophiesData).map((trophy: any) => {
@@ -82,12 +83,14 @@ export function TrophyModal(): JSX.Element {
                         justifyContent="space-between"
                       >
                         <Text>{trophy?.label}</Text>
-                        <Button
-                          colorScheme="twitter"
-                          isDisabled={trophy?.isDisabled}
-                        >
-                          Claim
-                        </Button>
+                        <Tooltip label="Coming Soon" hasArrow arrowSize={8}>
+                          <Button
+                            colorScheme="twitter"
+                            isDisabled={trophy?.isDisabled}
+                          >
+                            Claim
+                          </Button>
+                        </Tooltip>
                       </Flex>
                     );
                   })}
