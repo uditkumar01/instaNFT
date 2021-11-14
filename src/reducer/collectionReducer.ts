@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { IUser } from "../../../context/Auth/Auth";
+import { IUser } from "../context/Auth/Auth";
 
 export interface ICollection {
   uid?: string;

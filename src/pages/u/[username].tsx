@@ -14,16 +14,16 @@ import { followOrUnfollowUser } from "../../utils/Firestore/user/follow/followUs
 import { getNFT } from "../../utils/Firestore/nft/getNFT";
 import { likeHandler } from "../../utils/like/likeHandler";
 import { isLiked } from "../../utils/like/isLiked";
-import { INITIAL_NFT_STATE, nftReducer } from "./reducer/nftReducer";
+import { INITIAL_NFT_STATE, nftReducer } from "../../reducer/nftReducer";
 import {
   collectionReducer,
   INITIAL_COLLECTION_STATE,
-} from "./reducer/collectionReducer";
+} from "../../reducer/collectionReducer";
 import { getUserCollections } from "../../utils/collection/getUserCollections";
 import {
   INITIAL_LAST_DOC_STATE,
   lastDocReducer,
-} from "./reducer/lastDocReducer";
+} from "../../reducer/lastDocReducer";
 
 const LIMIT = 8;
 

@@ -1,5 +1,5 @@
 import { firestore } from "../../Firebase";
-import { ICollection } from "../../pages/u/reducer/collectionReducer";
+import { ICollection } from "../../reducer/collectionReducer";
 import { getNftsImages } from "../Firestore/nft/getNftsImages";
 import { getUser } from "../Firestore/user/getUser";
 import { getSquareRootWholeNum } from "../getSquareRootWholeNum";

@@ -19,7 +19,7 @@ import { nftCardLeftBtns } from "../../constants/nftCardLikeAndComment";
 import { getCollectionCardOptions } from "../../constants/collectionCardOptions";
 import { capitalizeString } from "../../utils/capitalizeString";
 import useAuth, { IUser } from "../../context/Auth/Auth";
-import { ICollection } from "../../pages/u/reducer/collectionReducer";
+import { ICollection } from "../../reducer/collectionReducer";
 
 export function ProfileTabs({
   user,

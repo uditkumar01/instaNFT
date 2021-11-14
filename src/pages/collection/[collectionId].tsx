@@ -40,7 +40,7 @@ import { isLiked } from "../../utils/like/isLiked";
 import {
   collectionReducer,
   INITIAL_COLLECTION_STATE,
-} from "../u/reducer/collectionReducer";
+} from "../../reducer/collectionReducer";
 
 const tweeterText = "Hi, Check out this NFT Collection on @instaNFT";
 

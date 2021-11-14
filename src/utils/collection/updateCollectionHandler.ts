@@ -1,6 +1,6 @@
 import { Dispatch } from "react";
 import { IUser } from "../../context/Auth/Auth";
-import { ICollectionAction } from "../../pages/u/reducer/collectionReducer";
+import { ICollectionAction } from "../../reducer/collectionReducer";
 import { updateCollection } from "../Firestore/collections/updateCollection";
 
 export const updateCollectionHandler = async (
