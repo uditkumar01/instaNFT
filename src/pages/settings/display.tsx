@@ -10,6 +10,7 @@ import { setItem } from "../../utils/localStorage/setItem";
 function Settings(): JSX.Element {
   const { setColorMode, colorMode } = useColorMode();
   const { user } = useAuth();
+  const color = "twitter";
   const bgColor = `${color}.500`;
   const borderColor = useColorModeValue("gray.200", "gray.700");
   return (
