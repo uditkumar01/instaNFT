@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { SingletonRouter } from "next/router";
 import { Dispatch } from "react";
-import { ICollectionAction } from "../context/Collection/Collection";
+import { ICollectionAction } from "../pages/u/reducer/collectionReducer";
 import { deleteCollection } from "../utils/Firestore/collections/deleteCollection";
 import { INftOptions } from "./nftOptions";
 
