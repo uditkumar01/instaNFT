@@ -46,7 +46,7 @@ export function ButtonLg({
         colorScheme={color}
       >
         {label && (
-          <Text pos="relative" fontWeight="400" bg="red">
+          <Text pos="relative" fontWeight="400">
             {label}
           </Text>
         )}

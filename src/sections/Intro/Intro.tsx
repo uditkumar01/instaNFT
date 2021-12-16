@@ -33,12 +33,12 @@ export default function LandingIntro(): JSX.Element {
     <Flex
       align="center"
       w="100%"
-      h="100%"
       minW="100vw"
-      minH="92.1vh"
+      h="100vh"
       flexDir="column"
       overflow="hidden"
       pos="relative"
+      minH={{ base: "666px", sm: "100vh" }}
     >
       <Stack
         spacing={14}
