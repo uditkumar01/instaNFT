@@ -3,7 +3,7 @@ import { useColorModeValue } from "@chakra-ui/color-mode";
 import { useDisclosure } from "@chakra-ui/hooks";
 import Icon from "@chakra-ui/icon";
 import { Image } from "@chakra-ui/image";
-import { Box } from "@chakra-ui/layout";
+import { Box, Flex } from "@chakra-ui/layout";
 import { Modal, ModalContent, ModalOverlay } from "@chakra-ui/modal";
 import React from "react";
 import { FaTimes } from "react-icons/fa";
@@ -12,9 +12,11 @@ import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 export function ImageViewer({
   src,
   children,
+  isVideoAsset,
 }: {
   src: string;
   children: React.ReactNode;
+  isVideoAsset?: boolean | string;
 }): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const color = "twitter";
@@ -61,19 +63,29 @@ export function ImageViewer({
             aria-label="Close Modal"
           />
           {/* <ModalBody> */}
-          <TransformWrapper>
-            <TransformComponent>
-              <Image
-                src={src}
-                alt="test"
-                style={{
-                  width: "100vw",
-                  height: "100vh",
-                  objectFit: "contain",
-                }}
-              />
-            </TransformComponent>
-          </TransformWrapper>
+          <Flex justify="center" align="center" h="100%" w="100%">
+            <TransformWrapper>
+              <TransformComponent>
+                {isVideoAsset ? (
+                  <video width="100%" height="100%" controls>
+                    <track kind="captions" />
+                    <source src={src} type={`video/${isVideoAsset}`} />
+                  </video>
+                ) : (
+                  // </Flex>
+                  <Image
+                    src={src}
+                    alt="test"
+                    style={{
+                      width: "100vw",
+                      height: "100vh",
+                      objectFit: "contain",
+                    }}
+                  />
+                )}
+              </TransformComponent>
+            </TransformWrapper>
+          </Flex>
           {/* </ModalBody> */}
         </ModalContent>
       </Modal>

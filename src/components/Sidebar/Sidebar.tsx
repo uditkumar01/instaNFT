@@ -125,20 +125,16 @@ const SidebarContent = ({
           <NavItem icon={AiFillFileAdd} href="/mint">
             Mint
           </NavItem>
-          <NavItem
-            icon={MdDashboardCustomize}
-            href="/settings/display"
-            isDisabled
-          >
+          <NavItem icon={MdDashboardCustomize} href="/settings/display">
             Display
           </NavItem>
-          <NavItem icon={IoLanguageSharp} href="/settings/language" isDisabled>
+          <NavItem icon={IoLanguageSharp} href="/settings/language">
             Language
           </NavItem>
-          <NavItem icon={MdPrivacyTip} href="/settings/pp" isDisabled>
+          <NavItem icon={MdPrivacyTip} href="/settings/pp">
             Privacy &amp; Policy
           </NavItem>
-          <NavItem icon={BsFillFileTextFill} href="/settings/tnc" isDisabled>
+          <NavItem icon={BsFillFileTextFill} href="/settings/tnc">
             Terms &amp; Conditions
           </NavItem>
         </Flex>

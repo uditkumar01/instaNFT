@@ -52,3 +52,5 @@ export { NoItemsFound } from "./NoItemsFound/NoItemsFound";
 export { ReplyCard } from "./ReplyCard/ReplyCard";
 export { MenuBar } from "./MenuBar/MenuBar";
 export { TrophyModal } from "./TrophyModal/TrophyModal";
+export { StoryProfile } from "./StoryProfile/StoryProfile";
+export { Story } from "./Story/Story";

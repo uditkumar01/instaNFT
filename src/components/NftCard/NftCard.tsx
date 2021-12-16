@@ -15,6 +15,7 @@ import { INftBtns } from "../../constants/nftCardLikeAndComment";
 import { capitalizeString } from "../../utils/capitalizeString";
 import { generatePinataLink } from "../../utils/generatePinataLink";
 import { getIpfsLink } from "../../utils/getIPFSLink";
+import { isVideo } from "../../utils/isVideo";
 
 // interface NftCardProps extends INFT {
 //   className?: string;
@@ -53,6 +54,7 @@ export function NftCard({
   const imgBg = useColorModeValue("gray.300", "gray.600");
   const color = "twitter";
   const imageUrl = getIpfsLink(generatePinataLink(assetUrl));
+  const isVideoAsset = isVideo(imageUrl);
   return (
     <Center
       py={6}
@@ -91,17 +93,26 @@ export function NftCard({
           overflow="hidden"
         >
           {assetUrl && !imgChild && (
-            <Image
-              src={imageUrl}
-              objectFit="cover"
-              objectPosition="center"
-              w="full"
-              h="full"
-              bg={imgBg}
-              onLoad={() => setIsImgLoaded(true)}
-              alt="nft image"
-              loading="lazy"
-            />
+            <>
+              {isVideoAsset ? (
+                <video width="100%" height="100%" controls>
+                  <track kind="captions" />
+                  <source src={imageUrl} type={`video/${isVideoAsset}`} />
+                </video>
+              ) : (
+                <Image
+                  src={imageUrl}
+                  objectFit="cover"
+                  objectPosition="center"
+                  w="full"
+                  h="full"
+                  bg={imgBg}
+                  onLoad={() => setIsImgLoaded(true)}
+                  alt="nft image"
+                  loading="lazy"
+                />
+              )}
+            </>
           )}
           {imgChild}
           <Skeleton

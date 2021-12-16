@@ -5,6 +5,7 @@ import { useColorMode } from "@chakra-ui/color-mode";
 import { Image } from "@chakra-ui/image";
 import { Dispatch, SetStateAction } from "react";
 import { ImageViewer } from "..";
+import { isVideo } from "../../utils/isVideo";
 
 interface NftImageViewerProps extends BoxProps {
   assetUrl?: string;
@@ -33,29 +34,37 @@ export function NftImageViewer({
       width: imageWidth,
     });
   };
+  const isVideoAsset = isVideo(assetUrl);
   return (
     <Box {...props}>
       {assetUrl && (
-        <ImageViewer src={assetUrl}>
-          <Image
-            src={assetUrl}
-            layout="fill"
-            objectFit="cover"
-            alt={alt}
-            rounded="2xl"
-            id="pinned-image"
-            onLoad={getImageDetails}
-            w="full"
-            // h="full"
-            minH="200px"
-            boxShadow={{
-              base: "none",
-              sm:
-                colorMode === "dark"
-                  ? "10px 10px 0px #0e1016, -10px -10px 0px #202230"
-                  : "10px 10px 0px #d6d6d6, -10px -10px 0px #ffffff",
-            }}
-          />
+        <ImageViewer src={assetUrl} isVideoAsset={isVideoAsset}>
+          {isVideoAsset ? (
+            <video width="100%" height="100%">
+              <track kind="captions" />
+              <source src={assetUrl} type={`video/${isVideoAsset}`} />
+            </video>
+          ) : (
+            <Image
+              src={assetUrl}
+              layout="fill"
+              objectFit="cover"
+              alt={alt}
+              rounded="2xl"
+              id="pinned-image"
+              onLoad={getImageDetails}
+              w="full"
+              // h="full"
+              minH="200px"
+              boxShadow={{
+                base: "none",
+                sm:
+                  colorMode === "dark"
+                    ? "10px 10px 0px #0e1016, -10px -10px 0px #202230"
+                    : "10px 10px 0px #d6d6d6, -10px -10px 0px #ffffff",
+              }}
+            />
+          )}
         </ImageViewer>
       )}
       <Skeleton

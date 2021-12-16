@@ -7,19 +7,26 @@ import { fadeInVariants } from "../../animations/fadeIn";
 import { zoomInVariants } from "../../animations/zoomIn";
 import { ButtonLg } from "../../components";
 import useAuth from "../../context/Auth/Auth";
+import useLanguage from "../../context/Language/LanguageProvider";
 
 export interface IImageAsset {
   name: string;
   path: string;
 }
 
-const imgAssets: Array<IImageAsset> = [];
+const imgAssets: Array<IImageAsset> = [
+  {
+    name: "pointing-hand",
+    path: "pointing-hand.png",
+  },
+];
 
 export default function LandingIntro(): JSX.Element {
   const btnBg = useColorModeValue("brandLight.900", "brandLight.800");
   const btnColor = "white";
   const btnBorderColor = useColorModeValue("brandLight.400", "brandLight.400");
   const btnHoverBg = useColorModeValue("brandLight.700", "brandLight.700");
+  const { lang } = useLanguage();
   const nftSocialNetwork = "NFT SOCIAL NETWORK";
   const { isAuthenticated, isLoading } = useAuth();
   return (
