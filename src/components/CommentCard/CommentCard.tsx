@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 import { HiChevronDown, HiReply } from "react-icons/hi";
 import { ReplyCard } from "..";
+import useColorProvider from "../../context/ColorsProvider";
 import { capitalizeString } from "../../utils/capitalizeString";
 import { IComment } from "../../utils/Firestore/nft/comment/addComment";
 import { timeAgo } from "../../utils/timeAgo";
@@ -22,7 +23,7 @@ export function CommentCard({
   createdAt,
   uid,
 }: CommentCardProps): JSX.Element {
-  const color = "twitter";
+  const { color } = useColorProvider();
   const textColor = useColorModeValue("gray.600", "gray.400");
   const timeColor = useColorModeValue("gray.500", "gray.500");
   const lightIconColor = useColorModeValue("gray.600", "gray.400");

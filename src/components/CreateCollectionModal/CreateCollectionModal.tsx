@@ -18,6 +18,7 @@ import { useToast } from "@chakra-ui/toast";
 import React, { ReactNode, useEffect, useRef, useState } from "react";
 import { AutoCompleteField } from "..";
 import useAuth, { IUser } from "../../context/Auth/Auth";
+import useColorProvider from "../../context/ColorsProvider";
 // eslint-disable-next-line max-len
 
 interface ICreatCollectionModal {
@@ -54,7 +55,7 @@ export function CreateCollectionModal({
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [tags, setTags] = useState<string[]>([]);
   const initialRef = useRef<HTMLInputElement>(null);
-  const color = "twitter";
+  const { color } = useColorProvider();
   const [isCreating, setIsCreating] = useState<boolean>(false);
   const toast = useToast();
   const { user } = useAuth();

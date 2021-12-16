@@ -8,6 +8,7 @@ import { Modal, ModalContent, ModalOverlay } from "@chakra-ui/modal";
 import React from "react";
 import { FaTimes } from "react-icons/fa";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
+import useColorProvider from "../../context/ColorsProvider";
 
 export function ImageViewer({
   src,
@@ -19,7 +20,7 @@ export function ImageViewer({
   isVideoAsset?: boolean | string;
 }): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const color = "twitter";
+  const { color } = useColorProvider();
   return (
     <>
       <Box cursor="zoom-in" onClick={onOpen}>

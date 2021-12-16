@@ -29,6 +29,7 @@ import { FieldError } from "../../components/FieldError/FieldError";
 import { updateProfileData } from "../../utils/Firestore/user/updateProfileData";
 import { FieldGroup, Layout, Sidebar } from "../../components";
 import { uploadImage } from "../../utils/Storage/uploadImage";
+import useColorProvider from "../../context/ColorsProvider";
 
 interface IErrorAction {
   type: string;
@@ -76,7 +77,7 @@ function Account() {
   const websiteInputRef = useRef<HTMLInputElement | null>(null);
   const [hasChanges, setHasChanges] = useState(false);
   const [errors, errorsDispatch] = useReducer(errorReducer, initialState);
-  const color = "twitter";
+  const { color } = useColorProvider();
   const [profileImage, setProfileImage] = useState<File | null>(null);
   const [coverImage, setCoverImage] = useState<File | null>(null);
   const toast = useToast();

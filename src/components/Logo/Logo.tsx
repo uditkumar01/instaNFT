@@ -1,4 +1,5 @@
 import Image from "next/image";
+import useColorProvider from "../../context/ColorsProvider";
 import { getThemeLogoName } from "../../utils/getThemeLogoName";
 
 export function Logo({
@@ -10,7 +11,7 @@ export function Logo({
   height?: number | string;
   className?: string;
 }): JSX.Element {
-  const color = "twitter";
+  const { color } = useColorProvider();
   return (
     <>
       <Image

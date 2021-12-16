@@ -2,6 +2,7 @@ import { Button } from "@chakra-ui/button";
 import { Flex } from "@chakra-ui/layout";
 import { AiOutlinePlus } from "react-icons/ai";
 import { CreateCollectionModal } from "..";
+import useColorProvider from "../../context/ColorsProvider";
 // eslint-disable-next-line max-len
 import { createCollectionHandler } from "../../utils/collection/createCollectionHandler";
 
@@ -10,7 +11,7 @@ export function CollectionTabHeader({
 }: {
   collectionDispatch: any;
 }): JSX.Element {
-  const color = "twitter";
+  const { color } = useColorProvider();
   return (
     <Flex justify="flex-end">
       <CreateCollectionModal

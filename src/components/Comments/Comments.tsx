@@ -7,6 +7,7 @@ import React, { useRef, useState } from "react";
 import { RiSendPlane2Fill } from "react-icons/ri";
 
 import { CommentCard } from "..";
+import useColorProvider from "../../context/ColorsProvider";
 import { IComment } from "../../utils/Firestore/nft/comment/addComment";
 
 export function Comments({
@@ -18,7 +19,7 @@ export function Comments({
   comments: IComment[];
   isLoading?: boolean;
 }): JSX.Element {
-  const color = "twitter";
+  const { color } = useColorProvider();
   const commentInputRef = useRef<HTMLInputElement>(null);
   const [inProgress, setInProgress] = useState(false);
   return (

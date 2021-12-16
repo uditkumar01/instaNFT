@@ -22,6 +22,7 @@ import { getThemeLogoName } from "../../utils/getThemeLogoName";
 import useAuth from "../../context/Auth/Auth";
 import { signOut } from "../../utils/Firestore/google/googleSignOut";
 import { setItem } from "../../utils/localStorage/setItem";
+import useColorProvider from "../../context/ColorsProvider";
 
 export function Navbar({
   expandedNav,
@@ -30,7 +31,7 @@ export function Navbar({
   expandedNav?: boolean;
   overrideColor?: string;
 }): JSX.Element {
-  const color = "twitter";
+  const { color } = useColorProvider();
   const { isAuthenticated, user, isLoading } = useAuth();
   const { colorMode, setColorMode } = useColorMode();
   // const btnBgColor = useColorModeValue("brandLight.900", "brandLight.800");

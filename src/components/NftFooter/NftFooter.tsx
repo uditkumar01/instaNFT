@@ -3,6 +3,7 @@ import Icon from "@chakra-ui/icon";
 import { Flex } from "@chakra-ui/layout";
 import { GoLinkExternal } from "react-icons/go";
 import { AnchorLink } from "..";
+import useColorProvider from "../../context/ColorsProvider";
 
 interface NftFooterProps {
   links: {
@@ -12,7 +13,7 @@ interface NftFooterProps {
 }
 
 export function NftFooter({ links }: NftFooterProps): JSX.Element {
-  const color = "twitter";
+  const { color } = useColorProvider();
   const linkTextColor = useColorModeValue(`${color}.500`, `${color}.300`);
   return (
     <Flex flex="1" pt="1rem" flexWrap="wrap">

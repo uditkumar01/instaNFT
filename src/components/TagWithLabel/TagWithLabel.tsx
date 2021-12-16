@@ -3,13 +3,14 @@ import { useColorMode } from "@chakra-ui/color-mode";
 import { Badge, Flex, Text } from "@chakra-ui/layout";
 import { Tooltip } from "@chakra-ui/tooltip";
 import parser from "html-react-parser";
+import useColorProvider from "../../context/ColorsProvider";
 import { formatDate } from "../../utils/formatDate";
 import { linkify } from "../../utils/linkify";
 
 export type TagWithLabelProps = { tag: [string, string] };
 
 export function TagWithLabel({ tag }: TagWithLabelProps): JSX.Element {
-  const color = "twitter";
+  const { color } = useColorProvider();
   const { colorMode } = useColorMode();
   if (!tag || tag.length < 2) return <></>;
   const [label, value] = tag;

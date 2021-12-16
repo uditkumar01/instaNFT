@@ -24,12 +24,13 @@ import {
   INITIAL_LAST_DOC_STATE,
   lastDocReducer,
 } from "../../reducer/lastDocReducer";
+import useColorProvider from "../../context/ColorsProvider";
 
 const LIMIT = 8;
 
 function Profile(): JSX.Element {
   const { isLoading, isAuthenticated, user, authDispatch } = useAuth();
-  const color = "twitter";
+  const { color } = useColorProvider();
   const { query, isReady } = useRouter();
   const toast = useToast();
   const [userDetails, setUserDetails] = useState<IUser>();

@@ -16,6 +16,7 @@ import { capitalizeString } from "../../utils/capitalizeString";
 import { generatePinataLink } from "../../utils/generatePinataLink";
 import { getIpfsLink } from "../../utils/getIPFSLink";
 import { isVideo } from "../../utils/isVideo";
+import useColorProvider from "../../context/ColorsProvider";
 
 // interface NftCardProps extends INFT {
 //   className?: string;
@@ -52,7 +53,7 @@ export function NftCard({
   owner = owner as IUser;
   const [isImgLoaded, setIsImgLoaded] = useState(false);
   const imgBg = useColorModeValue("gray.300", "gray.600");
-  const color = "twitter";
+  const { color } = useColorProvider();
   const imageUrl = getIpfsLink(generatePinataLink(assetUrl));
   const isVideoAsset = isVideo(imageUrl);
   return (

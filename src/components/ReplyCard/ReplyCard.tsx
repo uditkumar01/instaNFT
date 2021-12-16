@@ -7,13 +7,14 @@ import React from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 import { CgMailReply } from "react-icons/cg";
 import { HiChevronDown, HiReply } from "react-icons/hi";
+import useColorProvider from "../../context/ColorsProvider";
 
 export function ReplyCard({
   showReplyCount,
 }: {
   showReplyCount?: boolean;
 }): JSX.Element {
-  const color = "twitter";
+  const { color } = useColorProvider();
   const lightIconColor = useColorModeValue("gray.600", "gray.400");
   return (
     <Stack spacing={2}>

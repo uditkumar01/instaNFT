@@ -1,7 +1,6 @@
 import { IconButtonProps } from "@chakra-ui/button";
 import Icon from "@chakra-ui/icon";
 import { chakra } from "@chakra-ui/system";
-import { Dispatch } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { BiMessageRounded } from "react-icons/bi";
 import { likeHandler } from "../utils/like/likeHandler";

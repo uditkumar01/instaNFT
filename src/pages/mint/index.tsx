@@ -33,6 +33,7 @@ import { FieldGroup, Layout, Sidebar, TagWithLabel } from "../../components";
 import { uploadImage } from "../../utils/Storage/uploadImage";
 import { ipfsUpload } from "../../lib/morails/ipfsUpload";
 import { mintNFT } from "../../lib/nftp/mintNFT";
+import useColorProvider from "../../context/ColorsProvider";
 
 interface IErrorAction {
   type: string;
@@ -91,7 +92,7 @@ function Mint() {
   const [selectChain, setSelectChain] = useState(options[0].label);
   const [hasChanges, setHasChanges] = useState(false);
   const [errors, errorsDispatch] = useReducer(errorReducer, initialState);
-  const color = "twitter";
+  const { color } = useColorProvider();
   const [coverImage, setCoverImage] = useState<File | null>(null);
   const toast = useToast();
   const [isUploading, setIsUploading] = useState(false);

@@ -8,6 +8,7 @@ import { useDisclosure } from "@chakra-ui/hooks";
 import Icon from "@chakra-ui/icon";
 import { Modal, ModalOverlay, ModalContent, ModalBody } from "@chakra-ui/modal";
 import useWeb3 from "../../context/Web3/Web3";
+import useColorProvider from "../../context/ColorsProvider";
 
 function WalletConnectorButton({
   imagePath,
@@ -70,7 +71,7 @@ function WalletConnectorButton({
 export function ConnectWalletModal(): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef(null);
-  const color = "twitter";
+  const { color } = useColorProvider();
   const { loadWeb3Modal, loadTezos } = useWeb3();
 
   return (

@@ -10,9 +10,10 @@ import {
 import React from "react";
 import Image from "next/image";
 import { getThemeLogoName } from "../../utils/getThemeLogoName";
+import useColorProvider from "../../context/ColorsProvider";
 
 export function Footer(): JSX.Element {
-  const color = "twitter";
+  const { color } = useColorProvider();
   return (
     <Box
       bg={useColorModeValue("gray.50", "gray.900")}

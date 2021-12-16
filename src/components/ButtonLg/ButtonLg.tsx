@@ -2,6 +2,7 @@ import { Button, Text, useColorModeValue } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
 import { zoomInVariants } from "../../animations/zoomIn";
+import useColorProvider from "../../context/ColorsProvider";
 
 export function ButtonLg({
   icon,
@@ -16,7 +17,7 @@ export function ButtonLg({
   btnTheme?: { [key: string]: any };
   [key: string]: any;
 }): JSX.Element {
-  const color = "twitter";
+  const { color } = useColorProvider();
 
   return (
     <motion.div variants={zoomInVariants} initial="hidden" animate="visible">
