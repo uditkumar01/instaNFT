@@ -44,9 +44,10 @@ export function ButtonLg({
         onClick={() => callback && callback()}
         aria-label={label}
         colorScheme={color}
+        bg="red"
       >
         {label && (
-          <Text pos="relative" fontWeight="400" top="-2px">
+          <Text pos="relative" fontWeight="400">
             {label}
           </Text>
         )}
