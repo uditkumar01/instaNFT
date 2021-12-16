@@ -44,7 +44,11 @@ export default function LandingIntro(): JSX.Element {
         spacing={14}
         align="center"
         h="full"
-        mt="8.1rem"
+        mt={{
+          base: "3rem",
+          sm: "5rem",
+          md: "8.1rem",
+        }}
         pos="relative"
         overflow="hidden"
       >
@@ -72,7 +76,12 @@ export default function LandingIntro(): JSX.Element {
           <Heading
             fontSize="2rem"
             fontWeight="normal"
-            pb="4rem"
+            pb={{
+              base: "1.5rem",
+              sm: "2rem",
+              md: "3rem",
+              lg: "4rem",
+            }}
             className="join-text"
             color={useColorModeValue("gray.500", "gray.500")}
           >
