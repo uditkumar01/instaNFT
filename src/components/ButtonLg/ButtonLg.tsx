@@ -44,7 +44,8 @@ export function ButtonLg({
         onClick={() => callback && callback()}
         aria-label={label}
         colorScheme={color}
-        py="0"
+        maxH="unset"
+        maxW="unset"
       >
         {label && <Text fontWeight="400">{label}</Text>}
         {icon}
