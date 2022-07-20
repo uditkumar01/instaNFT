@@ -30,16 +30,21 @@ export const addNfts = async (
       error: string;
     }
 > => {
-  // TODO: add nfts to firestore
   if (!nfts) return { error: "No nfts to add", success: false };
   try {
     const nftCollection = firestore().collection("nfts");
-    // for (const nft of nfts) {
-    //   await nftCollection.add(nft);
-    // }
     await Promise.all(
       nfts.map(async (nft: INFT) => {
-        await nftCollection.add(nft);
+        // INFO: check if nft already exists before adding
+        const nftDoc = await nftCollection
+          .where("tokenId", "==", nft.tokenId)
+          .where("tokenAddress", "==", nft.tokenAddress)
+          .where("chain", "==", nft.chain)
+          .get();
+
+        if (nftDoc.empty) {
+          await nftCollection.add(nft);
+        }
       })
     );
     return { success: true };

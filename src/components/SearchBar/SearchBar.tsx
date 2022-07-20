@@ -24,7 +24,7 @@ export function SearchBar({ children }: { children: ReactNode }): JSX.Element {
   }>(initalState);
 
   const handleSubmit = async (query: string): Promise<void> => {
-    if (!query?.length || query.length < 4) {
+    if (!query?.length || query.length < 1) {
       setSearchResults({
         users: [],
         nfts: [],

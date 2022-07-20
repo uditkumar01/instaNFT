@@ -1,28 +1,9 @@
 import type { NextPage } from "next";
-import dynamic from "next/dynamic";
 import { Footer, Layout, Loader } from "../components";
-
-const importOpts = {
-  // ssr: false,
-  loading: () => <Loader />,
-};
-
-const LandingIntro = dynamic(
-  () => import("../sections/Intro/Intro"),
-  importOpts
-);
-const PhoneSection = dynamic(
-  () => import("../sections/Phone/Phone"),
-  importOpts
-);
-const SocializeNFTSection = dynamic(
-  () => import("../sections/SocializeNFT/SocializeNFT"),
-  importOpts
-);
-const FeaturedNfts = dynamic(
-  () => import("../sections/FeaturedNfts/FeaturedNfts"),
-  importOpts
-);
+import FeaturedNfts from "../sections/FeaturedNfts/FeaturedNfts";
+import LandingIntro from "../sections/Intro/Intro";
+import PhoneSection from "../sections/Phone/Phone";
+import SocializeNFTSection from "../sections/SocializeNFT/SocializeNFT";
 
 const Home: NextPage = () => {
   return (

@@ -15,6 +15,17 @@ function Login() {
   const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const [email, password] = event.target as any;
+    if (!email?.value || !password?.value) {
+      toast({
+        title: "Error",
+        description: "Please fill all fields",
+        status: "error",
+        variant: "left-accent",
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
     const userRes = await emailLogin(email.value, password.value);
     if (userRes?.success) {
       toast({

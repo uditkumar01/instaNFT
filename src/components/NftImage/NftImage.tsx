@@ -37,7 +37,7 @@ export function NftImage({
       {src && (
         <Image
           src={src}
-          layout="fill"
+          // layout="fill"
           objectFit="cover"
           alt="pinned nft image"
           rounded="2xl"

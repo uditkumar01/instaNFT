@@ -1,22 +1,19 @@
 /* eslint-disable max-len */
-import React, { ReactNode, useState } from "react";
+import React, { useState } from "react";
 import { Box, Center, Flex, Heading, Stack, Text } from "@chakra-ui/layout";
 import { useColorModeValue } from "@chakra-ui/color-mode";
 import { Skeleton } from "@chakra-ui/skeleton";
-import { Tag, TagCloseButton, TagLabel } from "@chakra-ui/tag";
-import { Image } from "@chakra-ui/image";
 import router from "next/router";
 import { IUser } from "../../context/Auth/Auth";
-import { INFT } from "../../utils/Firestore/nft/addNfts";
 import { CARD_IMAGE_HEIGHT } from "../../data/imageDimensions";
 import { CardFooter, CustomIconButton, CustomMenu } from "..";
-import { INftOptions } from "../../constants/nftOptions";
 import { INftBtns } from "../../constants/nftCardLikeAndComment";
 import { capitalizeString } from "../../utils/capitalizeString";
 import { generatePinataLink } from "../../utils/generatePinataLink";
 import { getIpfsLink } from "../../utils/getIPFSLink";
 import { isVideo } from "../../utils/isVideo";
 import useColorProvider from "../../context/ColorsProvider";
+import Image from "next/image";
 
 // interface NftCardProps extends INFT {
 //   className?: string;
@@ -52,10 +49,13 @@ export function NftCard({
   // eslint-disable-next-line no-param-reassign
   owner = owner as IUser;
   const [isImgLoaded, setIsImgLoaded] = useState(false);
-  const imgBg = useColorModeValue("gray.300", "gray.600");
-  const { color } = useColorProvider();
   const imageUrl = getIpfsLink(generatePinataLink(assetUrl));
   const isVideoAsset = isVideo(imageUrl);
+  const checkIfUrlisDataURL = imageUrl.startsWith("data:");
+  const imageSrcStr = checkIfUrlisDataURL
+    ? imageUrl
+    : `/api/imageProxy?imageUrl=${encodeURIComponent(imageUrl)}`;
+  const [imageSrc, setImageSrc] = useState(imageSrcStr);
   return (
     <Center
       py={6}
@@ -70,9 +70,14 @@ export function NftCard({
     >
       <Box
         maxW={!isFullWidth ? "360px" : "none"}
+        border={
+          isFullWidth
+            ? `1px solid ${useColorModeValue("white", "#2a2e35")}`
+            : "none"
+        }
         minW="300px"
         w="full"
-        bg={useColorModeValue("white", "gray.900")}
+        bg={useColorModeValue("white", "gray.600")}
         boxShadow="2xl"
         rounded="md"
         p={6}
@@ -102,15 +107,18 @@ export function NftCard({
                 </video>
               ) : (
                 <Image
-                  src={imageUrl}
+                  src={imageSrc}
                   objectFit="cover"
                   objectPosition="center"
-                  w="full"
-                  h="full"
-                  bg={imgBg}
-                  onLoad={() => setIsImgLoaded(true)}
-                  alt="nft image"
+                  layout="fill"
+                  onLoadingComplete={() => setIsImgLoaded(true)}
+                  alt={imageUrl || `${name} nft asset`}
                   loading="lazy"
+                  onError={(e) => {
+                    console.log("Bad image", e);
+                    setImageSrc("/images/broken.png");
+                  }}
+                  // quality={0.6}
                 />
               )}
             </>
