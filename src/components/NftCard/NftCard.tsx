@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Box, Center, Flex, Heading, Stack, Text } from "@chakra-ui/layout";
 import { useColorModeValue } from "@chakra-ui/color-mode";
+import { Image } from "@chakra-ui/image";
 import { Skeleton } from "@chakra-ui/skeleton";
 import router from "next/router";
 import { IUser } from "../../context/Auth/Auth";
@@ -12,7 +13,6 @@ import { capitalizeString } from "../../utils/capitalizeString";
 import { generatePinataLink } from "../../utils/generatePinataLink";
 import { getIpfsLink } from "../../utils/getIPFSLink";
 import { isVideo } from "../../utils/isVideo";
-import { Image } from "@chakra-ui/react";
 
 // interface NftCardProps extends INFT {
 //   className?: string;
