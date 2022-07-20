@@ -1,6 +1,5 @@
 import {
   Box,
-  Container,
   Stack,
   Text,
   Flex,
@@ -69,7 +68,7 @@ export function Footer(): JSX.Element {
           >
             © 2021 InstaNFT. All rights reserved
           </Text>
-          <Stack direction="row" spacing={6} py={1}>
+          <Stack direction="row" gap={6} py={1}>
             <IconButton
               icon={
                 <Image

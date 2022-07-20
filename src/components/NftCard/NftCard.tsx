@@ -4,6 +4,7 @@ import { Box, Center, Flex, Heading, Stack, Text } from "@chakra-ui/layout";
 import { useColorModeValue } from "@chakra-ui/color-mode";
 import { Skeleton } from "@chakra-ui/skeleton";
 import router from "next/router";
+import Image from "next/image";
 import { IUser } from "../../context/Auth/Auth";
 import { CARD_IMAGE_HEIGHT } from "../../data/imageDimensions";
 import { CardFooter, CustomIconButton, CustomMenu } from "..";
@@ -12,8 +13,6 @@ import { capitalizeString } from "../../utils/capitalizeString";
 import { generatePinataLink } from "../../utils/generatePinataLink";
 import { getIpfsLink } from "../../utils/getIPFSLink";
 import { isVideo } from "../../utils/isVideo";
-import useColorProvider from "../../context/ColorsProvider";
-import Image from "next/image";
 
 // interface NftCardProps extends INFT {
 //   className?: string;
@@ -50,6 +49,7 @@ export function NftCard({
   owner = owner as IUser;
   const [isImgLoaded, setIsImgLoaded] = useState(false);
   const imageUrl = getIpfsLink(generatePinataLink(assetUrl));
+  const borderColor = useColorModeValue("white", "#2a2e35");
   const isVideoAsset = isVideo(imageUrl);
   const checkIfUrlisDataURL = imageUrl.startsWith("data:");
   const imageSrcStr = checkIfUrlisDataURL
@@ -70,11 +70,7 @@ export function NftCard({
     >
       <Box
         maxW={!isFullWidth ? "360px" : "none"}
-        border={
-          isFullWidth
-            ? `1px solid ${useColorModeValue("white", "#2a2e35")}`
-            : "none"
-        }
+        border={isFullWidth ? `1px solid ${borderColor}` : "none"}
         minW="300px"
         w="full"
         bg={useColorModeValue("white", "gray.600")}
@@ -153,7 +149,7 @@ export function NftCard({
 
           <Flex w="full" justify="space-between" align="flex-end" pb={1}>
             {leftSideBtns && (
-              <Stack align="center" mb={1} isInline spacing={1}>
+              <Stack align="center" mb={1} isInline gap={1}>
                 {leftSideBtns?.map((btnItem: INftBtns) => (
                   <CustomIconButton
                     key={`icon-btn-${btnItem?.["aria-label"]}-${uid}`}

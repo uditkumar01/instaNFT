@@ -150,7 +150,7 @@ export default function CollectionPage(): JSX.Element {
             }}
           >
             <Stack
-              spacing={4}
+              gap={4}
               mb={{
                 base: "1rem",
                 md: "0",
@@ -180,7 +180,7 @@ export default function CollectionPage(): JSX.Element {
                 } Tags`}
               </Text>
 
-              <Stack direction="row" spacing={4} align="center">
+              <Stack direction="row" gap={4} align="center">
                 <Box>
                   <SkeletonCircle
                     h="33px"
@@ -199,7 +199,6 @@ export default function CollectionPage(): JSX.Element {
                     <Avatar
                       src={currentUser?.photoURL}
                       name={currentUser?.displayName || currentUser?.username}
-                      alt="image of owner of collection"
                       size="sm"
                     />
                   )}
@@ -325,7 +324,7 @@ export default function CollectionPage(): JSX.Element {
           </Flex>
           <SimpleGrid
             className={styles.nftGrid}
-            spacing={4}
+            gap={4}
             px={{
               base: "0",
               md: "20px",

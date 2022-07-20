@@ -2,14 +2,7 @@ import { Button, IconButton } from "@chakra-ui/button";
 import { useColorModeValue } from "@chakra-ui/color-mode";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Flex, SimpleGrid, Text } from "@chakra-ui/layout";
-import {
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
-} from "@chakra-ui/modal";
+import { Modal, ModalBody, ModalContent, ModalOverlay } from "@chakra-ui/modal";
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/tabs";
 import { Tooltip } from "@chakra-ui/tooltip";
 import React from "react";
@@ -19,7 +12,10 @@ import { trophiesData } from "../../data/trophiesData";
 
 export function TrophyModal(): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [trophies, setTrophies] = React.useState<Array<any>>([]);
+  // const [trophies, setTrophies] = React.useState<Array<any>>([]);
+  // TODO: use useState once we have a dynamic list of trophies
+  const trophies: Array<any> = [];
+
   return (
     <>
       <IconButton
@@ -50,7 +46,7 @@ export function TrophyModal(): JSX.Element {
               <TabPanels>
                 <TabPanel>
                   {trophies?.length > 0 ? (
-                    <SimpleGrid columns={[1, 2, 3]} spacing={4}>
+                    <SimpleGrid columns={[1, 2, 3]} gap={4}>
                       {trophies.map((trophy: any) => {
                         return (
                           <Flex

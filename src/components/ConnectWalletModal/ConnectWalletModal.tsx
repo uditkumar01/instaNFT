@@ -95,7 +95,7 @@ export function ConnectWalletModal(): JSX.Element {
         <ModalOverlay />
         <ModalContent>
           <ModalBody p="1rem 0">
-            <Stack spacing={4} align="center" p="1rem">
+            <Stack gap={4} align="center" p="1rem">
               <WalletConnectorButton
                 imagePath="/images/ethereum.png"
                 label="Ethereum"

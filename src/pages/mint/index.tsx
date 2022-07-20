@@ -381,6 +381,7 @@ function Mint() {
                     </FormControl>
                     <Menu>
                       <MenuButton
+                        as={Button}
                         variant="ghost"
                         rounded="full"
                         cursor="pointer"

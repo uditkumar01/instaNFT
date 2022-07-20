@@ -477,7 +477,7 @@ export function UpperProfile({
         </Stack>
 
         <Stack
-          spacing={3}
+          gap={3}
           direction="row"
           className={styles.profileSocialMedia}
           mt={{

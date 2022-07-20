@@ -27,7 +27,6 @@ export function ProfileTabs({
   color,
   setTabIndex,
   isLoading,
-  nftLikeHandler,
   nftDispatch,
   isLikedCheck,
   allCollections,
@@ -103,7 +102,7 @@ export function ProfileTabs({
         <TabPanels>
           <TabPanel>
             {nfts?.length ? (
-              <SimpleGrid className={styles.nftGrid} spacing={4}>
+              <SimpleGrid className={styles.nftGrid} gap={4}>
                 {nfts?.map((nftItem, i) => {
                   const menuOptions = getNftOptions(
                     router,
@@ -174,7 +173,7 @@ export function ProfileTabs({
           <TabPanel>
             <CollectionTabHeader collectionDispatch={collectionDispatch} />
             {allCollections?.length ? (
-              <SimpleGrid className={styles.nftGrid} spacing={4}>
+              <SimpleGrid className={styles.nftGrid} gap={4}>
                 {allCollections?.map((collectionItem, i) => {
                   const menuOptionData = getCollectionCardOptions(
                     router,

@@ -2,8 +2,6 @@ import { Button, IconButton } from "@chakra-ui/button";
 import { Box, Flex, HStack } from "@chakra-ui/layout";
 import { chakra, useColorMode, useColorModeValue } from "@chakra-ui/system";
 import React from "react";
-import { BsSunFill } from "react-icons/bs";
-import { BiMoon } from "react-icons/bi";
 import { motion } from "framer-motion";
 import { Avatar } from "@chakra-ui/avatar";
 import {
@@ -118,7 +116,7 @@ export function Navbar({
           </chakra.span>
         </Flex>
         {/* <Flex></Flex> */}
-        <HStack spacing={4}>
+        <HStack gap={4}>
           {!isAuthenticated ? (
             <motion.div
               variants={zoomInVariants}

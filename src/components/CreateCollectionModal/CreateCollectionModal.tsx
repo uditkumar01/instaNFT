@@ -98,7 +98,7 @@ export function CreateCollectionModal({
               />
             </FormControl>
 
-            <Flex flexWrap="wrap" isInline mt="1rem">
+            <Flex flexWrap="wrap" mt="1rem">
               {tags.map((tag) => (
                 <Tag
                   size="md"

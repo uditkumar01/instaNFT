@@ -41,7 +41,7 @@ export default function LandingIntro(): JSX.Element {
       minH={{ base: "666px", sm: "100vh" }}
     >
       <Stack
-        spacing={14}
+        gap={14}
         align="center"
         h="full"
         mt={{

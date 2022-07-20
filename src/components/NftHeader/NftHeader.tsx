@@ -56,18 +56,12 @@ export function NftHeader({
   const [liking, setLiking] = useState(false);
   return (
     <Flex w="full" justify="space-between" align="center">
-      <Stack mt={1} direction="row" spacing={4} align="center">
+      <Stack mt={1} direction="row" gap={4} align="center">
         {(avatar || name) && (
-          <Avatar
-            src={avatar}
-            name={name}
-            alt="nft owner"
-            size="md"
-            boxShadow="md"
-          />
+          <Avatar src={avatar} name={name} size="md" boxShadow="md" />
         )}
         <SkeletonCircle size="50px" d={avatar || name ? "none" : "block"} />
-        <Stack direction="column" spacing={0} fontSize="sm">
+        <Stack direction="column" gap={0} fontSize="sm">
           <Text fontWeight={600} fontSize="1.1rem" textTransform="capitalize">
             {name}
           </Text>
@@ -77,7 +71,7 @@ export function NftHeader({
           </Text>
         </Stack>
       </Stack>
-      <HStack spacing={2} color="gray.500">
+      <HStack gap={2} color="gray.500">
         <IconButton
           p="0.3rem"
           icon={

@@ -47,7 +47,7 @@ export function NftImageViewer({
           ) : (
             <Image
               src={assetUrl}
-              layout="fill"
+              // layout="fill"
               objectFit="cover"
               alt={alt}
               rounded="2xl"

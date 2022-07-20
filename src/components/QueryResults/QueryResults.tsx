@@ -8,10 +8,9 @@ import { useColorModeValue } from "@chakra-ui/color-mode";
 import { Flex, Stack, Text } from "@chakra-ui/layout";
 import { ModalBody } from "@chakra-ui/modal";
 import { motion } from "framer-motion";
-import React, { ReactNode } from "react";
+import React from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BiMinus } from "react-icons/bi";
-import Image from "next/image";
 import { Avatar } from "@chakra-ui/avatar";
 import { CgFileDocument } from "react-icons/cg";
 import { QueryCard } from "..";
@@ -66,7 +65,7 @@ export function QueryResults({
                     </AccordionButton>
                   </motion.h2>
                   <AccordionPanel pb={4} maxH="60vh" overflow="auto">
-                    <Stack spacing={2}>
+                    <Stack gap={2}>
                       {results?.map((item: any) => {
                         return (
                           <QueryCard

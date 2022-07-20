@@ -31,21 +31,20 @@ export function CommentCard({
   if (typeof user === "string" || !uid) return <></>;
   return (
     <Stack
-      spacing={2}
+      gap={2}
       w="full"
       px={{
         base: 1,
         md: 2,
       }}
     >
-      <Stack direction="row" align="center" spacing={4} maxW="1000px">
+      <Stack direction="row" align="center" gap={4} maxW="1000px">
         <Avatar
           src="https://avatars0.githubusercontent.com/u/1164541?v=4"
-          alt="Author"
           size="sm"
           boxShadow="xl"
         />
-        {/* <Stack direction="column" spacing={0}> */}
+        {/* <Stack direction="column" gap={0}> */}
         <Text pos="relative" top="-4px" fontWeight={500} fontSize="1rem" mb={1}>
           {capitalizeString(user?.displayName || "") || user?.username}&nbsp;
           <chakra.span

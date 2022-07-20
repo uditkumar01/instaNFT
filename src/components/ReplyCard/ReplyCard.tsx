@@ -17,15 +17,14 @@ export function ReplyCard({
   const { color } = useColorProvider();
   const lightIconColor = useColorModeValue("gray.600", "gray.400");
   return (
-    <Stack spacing={2}>
-      <Stack mt={1} direction="row" spacing={4} maxW="1000px">
+    <Stack gap={2}>
+      <Stack mt={1} direction="row" gap={4} maxW="1000px">
         <Avatar
           src="https://avatars0.githubusercontent.com/u/1164541?v=4"
-          alt="Author"
           size="sm"
           boxShadow="xl"
         />
-        <Stack direction="column" spacing={0}>
+        <Stack direction="column" gap={0}>
           <Stack direction="row" align="center" mb={1}>
             <Text fontWeight={600} fontSize="1rem">
               Achim Rolle{" "}

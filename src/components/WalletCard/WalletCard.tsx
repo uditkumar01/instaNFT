@@ -43,7 +43,7 @@ export function WalletCard({
         }}
         m="0.5rem"
         textAlign="center"
-        spacing={0}
+        gap={0}
         border="2px solid"
         borderColor={borderColor}
         cursor="pointer"

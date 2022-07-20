@@ -29,10 +29,10 @@ export function CardFooter({
       borderTop="1px solid"
       borderColor={useColorModeValue("gray.200", "gray.700")}
     >
-      <Stack mt={1} direction="row" spacing={4} align="center">
-        <Avatar src={avatar} name={username} alt="owner-of-nft" size="sm" />
+      <Stack mt={1} direction="row" gap={4} align="center">
+        <Avatar src={avatar} name={username} size="sm" />
 
-        <Stack direction="column" spacing={0} fontSize="sm">
+        <Stack direction="column" gap={0} fontSize="sm">
           <Text color="gray.500" fontSize="0.8rem">
             {title}
           </Text>
@@ -41,7 +41,7 @@ export function CardFooter({
           </Text>
         </Stack>
       </Stack>
-      <Stack mt={6} direction="row" spacing={4} align="center">
+      <Stack mt={6} direction="row" gap={4} align="center">
         <Button
           size="sm"
           rounded="full"

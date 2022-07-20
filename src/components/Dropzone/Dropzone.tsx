@@ -44,7 +44,7 @@ export function InfoZone({
         zIndex={-1}
       />
       <Stack
-        spacing={1}
+        gap={1}
         textAlign="center"
         pos="relative"
         zIndex={1}

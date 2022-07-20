@@ -24,6 +24,8 @@
   "plugins": ["react", "@typescript-eslint", "react-hooks"],
   "rules": {
     "no-use-before-define": "off",
+    "@typescript-eslint/no-explicit-any": "off", // TODO: remove this rule
+    "@typescript-eslint/explicit-module-boundary-types": "off", //TODO: remove this rule
     "@typescript-eslint/no-use-before-define": ["error"],
     "react/require-default-props": "off",
     "import/no-cycle": "off",

@@ -30,7 +30,7 @@ export function Comments({
         w="full"
         align="center"
         justify="center"
-        spacing={10}
+        gap={10}
         bg={{
           base: "transparent",
           sm: useColorModeValue("gray.50", "gray.800"),
@@ -46,7 +46,7 @@ export function Comments({
           direction="row"
           w="full"
           justify="center"
-          spacing={{
+          gap={{
             base: 2,
             md: 4,
           }}
@@ -60,7 +60,7 @@ export function Comments({
             rounded="full"
             h="58px"
             p={1}
-            spacing={3}
+            gap={3}
           >
             <Avatar name="John Doe" size="md" />
             <Input
@@ -89,7 +89,7 @@ export function Comments({
             />
           </Stack>
         </Stack>
-        <Stack w="full" spacing={4} maxW="1100px">
+        <Stack w="full" gap={4} maxW="1100px">
           {comments.map((comment) => (
             <CommentCard key={`comment-card-${comment.uid}`} {...comment} />
           ))}

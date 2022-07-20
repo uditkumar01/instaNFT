@@ -86,7 +86,7 @@ function ConnectWallet(): JSX.Element {
             w="full"
             h="full"
             maxW="1400px"
-            spacing={9}
+            gap={9}
             mt="3rem"
             mx={{
               base: 4,

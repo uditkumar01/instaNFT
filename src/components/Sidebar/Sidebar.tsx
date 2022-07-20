@@ -2,7 +2,7 @@ import { Box, Flex } from "@chakra-ui/layout";
 import { FaCog } from "react-icons/fa";
 import { BsFillFileTextFill } from "react-icons/bs";
 import { RiEditCircleFill } from "react-icons/ri";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { MdDashboardCustomize, MdPrivacyTip } from "react-icons/md";
 import { IoLanguageSharp } from "react-icons/io5";

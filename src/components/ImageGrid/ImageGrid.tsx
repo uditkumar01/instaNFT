@@ -34,7 +34,7 @@ export function ImageGrid({ images }: { images: string[] }): JSX.Element {
       minH={COLLECTION_CARD_DIMENSIONS.height}
       p="2px"
     >
-      <SimpleGrid w="full" h="full" columns={squareNum} spacing={0}>
+      <SimpleGrid w="full" h="full" columns={squareNum} gap={0}>
         {imageArray?.map((image) => {
           return (
             <Box

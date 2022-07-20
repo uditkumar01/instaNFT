@@ -25,7 +25,7 @@ function Settings(): JSX.Element {
             w="full"
             h="full"
             maxW="1400px"
-            spacing={9}
+            gap={9}
             my="3rem"
             mx={{
               base: 4,

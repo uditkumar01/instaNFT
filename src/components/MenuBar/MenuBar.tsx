@@ -18,7 +18,7 @@ export function MenuBar(): JSX.Element {
   return (
     <motion.div variants={bounceInVariants} initial="hidden" animate="visible">
       <Flex
-        spacing={2}
+        gap={2}
         bg={{
           base: useColorModeValue("gray.300", "gray.600"),
           sm: useColorModeValue("gray.100", "gray.700"),

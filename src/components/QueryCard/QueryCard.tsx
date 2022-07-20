@@ -1,8 +1,7 @@
 import { IconButton } from "@chakra-ui/button";
 import { useColorModeValue } from "@chakra-ui/color-mode";
-import Icon from "@chakra-ui/icon";
 import { Flex, Heading, Stack, Text } from "@chakra-ui/layout";
-import React, { ReactElement, ReactNode } from "react";
+import React, { ReactElement } from "react";
 import { MdOutlineSubdirectoryArrowLeft } from "react-icons/md";
 
 interface QueryCardProps {

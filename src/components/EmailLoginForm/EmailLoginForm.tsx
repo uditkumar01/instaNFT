@@ -14,7 +14,7 @@ export const EmailLoginForm = (props: HTMLChakraProps<"form">): JSX.Element => (
       >
         or continue with email
       </FormLabel>
-      <Stack spacing={0}>
+      <Stack gap={0}>
         <Input
           placeholder="Email address"
           _placeholder={{ color: useColorModeValue("gray.600", "gray.400") }}
