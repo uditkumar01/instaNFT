@@ -102,23 +102,6 @@ export function Footer(): JSX.Element {
               }
               aria-label="Slack"
             />
-            <IconButton
-              icon={
-                <Image
-                  src="/images/facebook.png"
-                  height="40px"
-                  width="40px"
-                  alt="Facebook"
-                />
-              }
-              aria-label="Facebook"
-            />
-            {/* <IconButton label="YouTube" href="#">
-              <FaYoutube />
-            </IconButton>
-            <IconButton label="Instagram" href="#">
-              <FaInstagram />
-            </IconButton> */}
           </Stack>
         </Flex>
       </Box>

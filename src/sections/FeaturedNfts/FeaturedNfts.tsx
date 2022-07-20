@@ -47,13 +47,14 @@ export default function FeaturedNfts(): JSX.Element {
   };
 
   const prevPage = () => {
+    console.log(pageNo);
     if (pageNo > 0) {
       setPageNo((prev) => prev - 1);
     }
   };
 
   useEffect(() => {
-    getFeaturedNfts(12, step);
+    getFeaturedNfts(1, 2 * step);
   }, [step]);
 
   const currentPageNfts = nfts?.slice(pageNo * step, (pageNo + 1) * step);

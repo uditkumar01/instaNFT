@@ -4,7 +4,6 @@ import { Box, Center, Flex, Heading, Stack, Text } from "@chakra-ui/layout";
 import { useColorModeValue } from "@chakra-ui/color-mode";
 import { Skeleton } from "@chakra-ui/skeleton";
 import router from "next/router";
-import Image from "next/image";
 import { IUser } from "../../context/Auth/Auth";
 import { CARD_IMAGE_HEIGHT } from "../../data/imageDimensions";
 import { CardFooter, CustomIconButton, CustomMenu } from "..";
@@ -13,6 +12,7 @@ import { capitalizeString } from "../../utils/capitalizeString";
 import { generatePinataLink } from "../../utils/generatePinataLink";
 import { getIpfsLink } from "../../utils/getIPFSLink";
 import { isVideo } from "../../utils/isVideo";
+import { Image } from "@chakra-ui/react";
 
 // interface NftCardProps extends INFT {
 //   className?: string;
@@ -51,10 +51,7 @@ export function NftCard({
   const imageUrl = getIpfsLink(generatePinataLink(assetUrl));
   const borderColor = useColorModeValue("white", "#2a2e35");
   const isVideoAsset = isVideo(imageUrl);
-  const checkIfUrlisDataURL = imageUrl.startsWith("data:");
-  const imageSrcStr = checkIfUrlisDataURL
-    ? imageUrl
-    : `/api/imageProxy?imageUrl=${encodeURIComponent(imageUrl)}`;
+  const imageSrcStr = imageUrl;
   const [imageSrc, setImageSrc] = useState(imageSrcStr);
   return (
     <Center
@@ -104,11 +101,15 @@ export function NftCard({
               ) : (
                 <Image
                   src={imageSrc}
-                  objectFit="cover"
-                  objectPosition="center"
-                  layout="fill"
-                  onLoadingComplete={() => setIsImgLoaded(true)}
-                  alt={imageUrl || `${name} nft asset`}
+                  style={{
+                    objectFit: "cover",
+                    objectPosition: "center",
+                  }}
+                  crossOrigin="anonymous"
+                  onLoad={(e) => {
+                    setIsImgLoaded(true);
+                  }}
+                  alt={`${name} nft asset`}
                   loading="lazy"
                   onError={(e) => {
                     console.log("Bad image", e);

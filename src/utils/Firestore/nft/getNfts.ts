@@ -20,6 +20,7 @@ export const getNfts = async (
       success: false;
     }
 > => {
+  console.log("getNfts.ts -> line 30", page, limit, orderBy, order);
   try {
     const nfts = await firestore()
       .collection("nfts")
@@ -47,6 +48,8 @@ export const getNfts = async (
         nftArray.push(nft);
       })
     );
+
+    console.log("getNfts.ts -> line 50", nftArray, nfts.size);
 
     return {
       nftRes: nftArray,
