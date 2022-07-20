@@ -132,7 +132,7 @@ export function AutoCompleteField({
       {addTagInput && (
         <Box w="full" bg="green" pos="absolute" bottom="-4px">
           <Menu autoSelect={false} isOpen isLazy>
-            <MenuList autoFocus={false}>
+            <MenuList>
               <MenuItemOption
                 autoFocus={false}
                 onClick={() => {
