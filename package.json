@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@airgap/beacon-sdk": "^2.3.5",
-    "@blazity/next-image-proxy": "^1.0.2",
     "@chakra-ui/react": "^1.6.10",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
