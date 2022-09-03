@@ -44,6 +44,7 @@ export function NftImage({
           id="pinned-image"
           w="full"
           onLoad={getImageDetails}
+          loading="lazy"
           boxShadow={{
             base: "none",
             sm:
